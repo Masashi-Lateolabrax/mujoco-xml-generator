@@ -12,6 +12,8 @@
 | impl   | Indicates implementation of new functions.                  |
 | remove | Indicates removal of files or directories.                  |
 
+If you want to commit changes while editing, please use the "-ing" suffix. For example, "impl-ing".
+
 ### How to treat the dependencies
 
 To record the dependencies
