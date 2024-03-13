@@ -20,5 +20,7 @@ class Attribution(_ToString):
 def arrange_attributions(attributions: list[Attribution]) -> str:
     res = ""
     for a in attributions:
+        if a.is_none():
+            continue
         res += a.to_string() + " "
     return res.rstrip()
