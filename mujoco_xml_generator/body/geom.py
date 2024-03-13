@@ -82,7 +82,7 @@ class Geom:
             fitscale: float = 1.0,
             fluidshape: FluidShape = FluidShape.none,
             fluidcoef: tuple[float, float, float, float, float] = (0.5, 0.25, 1.5, 1.0, 1.0),
-            user: tuple[float] | None = None
+            user: list[float] | None = None
     ):
         self.name = utils.Attribution("name", name)
         self.class_ = utils.Attribution("class", class_)
