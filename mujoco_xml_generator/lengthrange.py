@@ -10,7 +10,7 @@ class LengthRange(_ToString):
         MuscleUser = 2
         All = 4
 
-        def to_string(self) -> str:
+        def __str__(self) -> str:
             match self:
                 case LengthRange.Mode.NoneMode:
                     return "none"
@@ -35,7 +35,7 @@ class LengthRange(_ToString):
             interval: float = 2.0,
             tolrange: float = 0.05
     ):
-        self.mode = utils.Attribution("mode", mode.to_string())
+        self.mode = utils.Attribution("mode", str(mode) if mode is not None else None)
         self.useexisting = utils.Attribution("useexisting", useexisting)
         self.uselimit = utils.Attribution("uselimit", uselimit)
         self.accel = utils.Attribution("accel", accel)
