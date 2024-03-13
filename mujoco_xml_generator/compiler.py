@@ -51,26 +51,26 @@ class Compiler:
             exactmeshinertia: bool = False,
             inertiagrouprange: tuple[int] = (0, 5)
     ):
-        self.autolimits: str = str(autolimits).lower()
-        self.boundmass: float = boundmass
-        self.boundinertia: float = boundinertia
-        self.settotalmass: float = settotalmass
-        self.balanceinertia: str = str(balanceinertia).lower()
-        self.strippath: str = str(strippath).lower()
-        self.coordinate: str = coordinate.to_string()
-        self.angle: str = angle.to_string()
-        self.fitaabb: str = str(fitaabb).lower()
-        self.eulerseq: str = eulerseq
-        self.meshdir_: str = "" if meshdir is None else f"meshdir=\"{meshdir}\""
-        self.texturedir_: str = "" if texturedir is None else f"texturedir=\"{texturedir}\""
-        self.assetdir_: str = "" if assetdir is None else f"assetdir=\"{assetdir}\""
-        self.discardvisual: str = str(discardvisual).lower()
-        self.convexhull: str = str(convexhull).lower()
-        self.usethread: str = str(usethread).lower()
-        self.fusestatic: str = str(fusestatic).lower()
-        self.inertiafromgeom: str = "auto" if inertiafromgeom is None else str(inertiafromgeom).lower()
-        self.exactmeshinertia: str = str(exactmeshinertia).lower()
-        self.inertiagrouprange: str = f"{inertiagrouprange[0]} {inertiagrouprange[1]}"
+        self.autolimits = utils.Attribution("autolimits", autolimits)
+        self.boundmass = utils.Attribution("boundmass", boundmass)
+        self.boundinertia = utils.Attribution("boundinertia", boundinertia)
+        self.settotalmass = utils.Attribution("settotalmass", settotalmass)
+        self.balanceinertia = utils.Attribution("balanceinertia", balanceinertia)
+        self.strippath = utils.Attribution("strippath", strippath)
+        self.coordinate = utils.Attribution("coordinate", utils.str_or_none(coordinate))
+        self.angle = utils.Attribution("angle", utils.str_or_none(angle))
+        self.fitaabb = utils.Attribution("fitaabb", fitaabb)
+        self.eulerseq = utils.Attribution("eulerseq", eulerseq)
+        self.meshdir = utils.Attribution("meshdir", meshdir)
+        self.texturedir = utils.Attribution("texturedir", texturedir)
+        self.assetdir = utils.Attribution("assetdir", assetdir)
+        self.discardvisual = utils.Attribution("discardvisual", discardvisual)
+        self.convexhull = utils.Attribution("convexhull", convexhull)
+        self.usethread = utils.Attribution("usethread", usethread)
+        self.fusestatic = utils.Attribution("fusestatic", fusestatic)
+        self.inertiafromgeom = utils.Attribution("inertiafromgeom", inertiafromgeom)
+        self.exactmeshinertia = utils.Attribution("exactmeshinertia", exactmeshinertia)
+        self.inertiagrouprange = utils.Attribution("inertiagrouprange", inertiagrouprange)
 
         self.children = []
 
