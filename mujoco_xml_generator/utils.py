@@ -15,9 +15,4 @@ class Attribution:
 
 
 def arrange_attributions(attributions: list[Attribution]) -> str:
-    res = ""
-    for a in attributions:
-        if a.is_none():
-            continue
-        res += str(a) + " "
-    return res.rstrip()
+    return " ".join(str(a) for a in attributions)
