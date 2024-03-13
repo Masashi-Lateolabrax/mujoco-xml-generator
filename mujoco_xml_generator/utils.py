@@ -1,9 +1,12 @@
 class Attribution:
-    def __init__(self, name: str, value: float | int | bool | str | None = None):
+    def __init__(self, name: str, value: float | int | bool | tuple[int] | tuple[float] | str | None = None):
         self.name: str = name
-        self.value = value
-        if type(self.value) is bool:
-            self.value = str(self.value).lower()
+        if type(value) is bool:
+            self.value = str(value).lower()
+        elif type(value) is tuple:
+            self.value = " ".join(str(v) for v in value)
+        else:
+            self.value = value
 
     def is_none(self) -> bool:
         return self.value is None
