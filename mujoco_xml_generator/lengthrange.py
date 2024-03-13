@@ -1,9 +1,8 @@
-from mujoco_xml_generator.interface import _ToString
 from mujoco_xml_generator import utils
 import enum
 
 
-class LengthRange(_ToString):
+class LengthRange:
     class Mode(enum.Enum):
         NoneMode = 0
         Muscle = 1
@@ -46,7 +45,7 @@ class LengthRange(_ToString):
         self.interval = utils.Attribution("interval", interval)
         self.tolrange = utils.Attribution("tolrange", tolrange)
 
-    def to_string(self) -> str:
+    def __str__(self) -> str:
         attributions = utils.arrange_attributions([
             self.mode,
             self.useexisting,

@@ -1,15 +1,14 @@
-from interface import _ToString
 import enum
 
 from lengthrange import LengthRange
 
 
-class Compiler(_ToString):
-    class LocalOrGlobal(enum.Enum, _ToString):
+class Compiler:
+    class LocalOrGlobal(enum.Enum):
         Local = 0
         Global = 1
 
-        def to_string(self) -> str:
+        def __str__(self) -> str:
             match self:
                 case Compiler.LocalOrGlobal.Local:
                     return "local"
@@ -17,11 +16,11 @@ class Compiler(_ToString):
                     return "global"
             raise "Unexpected error occurred."
 
-    class AngleType(enum.Enum, _ToString):
+    class AngleType(enum.Enum):
         Radian = 0
         Degree = 1
 
-        def to_string(self) -> str:
+        def __str__(self) -> str:
             match self:
                 case Compiler.AngleType.Radian:
                     return "radian"
@@ -82,5 +81,5 @@ class Compiler(_ToString):
             is_supported |= type(child) is t
         self.children.append(child)
 
-    def to_string(self) -> str:
+    def __str__(self) -> str:
         pass

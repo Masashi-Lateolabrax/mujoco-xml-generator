@@ -8,11 +8,11 @@ def test_attributions_to_str():
     d = Attribution("test4", True)
     e = Attribution("test5", "true")
 
-    assert a.to_string() == "test1=\"20.5\""
-    assert b.to_string() == ""
-    assert c.to_string() == "test3=\"1\""
-    assert d.to_string() == "test4=\"true\""
-    assert e.to_string() == "test5=\"true\""
+    assert str(a) == "test1=\"20.5\""
+    assert str(b) == ""
+    assert str(c) == "test3=\"1\""
+    assert str(d) == "test4=\"true\""
+    assert str(e) == "test5=\"true\""
 
 
 def test_arrange_attributions():
