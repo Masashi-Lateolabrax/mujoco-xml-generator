@@ -10,10 +10,11 @@
 | docs   | Indicates modifications made to documents or similar items. |
 | fix    | Indicates bug fixes.                                        |
 | impl   | Indicates implementation of new functions.                  |
+| mod    | Indicates changes not involving alternations to interfaces. |
 | mv     | Indicates movement or rename of files.                      |
 | remove | Indicates removal of files or directories.                  |
 | test   | Indicates something about tests.                            |
-| update | Indicates that update happen for existing functions.        |
+| update | Indicates changes involving alternation to interfaces.      |
 
 We define suffixes for above prefixes. For example, "impl-ing".
 
