@@ -8,6 +8,9 @@ class Attribution(_ToString):
         if type(self.value) is bool:
             self.value = str(self.value).lower()
 
+    def is_none(self) -> bool:
+        return self.value is None
+
     def to_string(self) -> str:
         if self.value is None:
             return ""
