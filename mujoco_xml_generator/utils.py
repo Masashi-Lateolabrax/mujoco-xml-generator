@@ -1,3 +1,9 @@
+def str_or_none(x) -> str | None:
+    if x is None:
+        return None
+    return str(x)
+
+
 class Attribution:
     def __init__(self, name: str, value: float | int | bool | tuple[int] | tuple[float] | str | None = None):
         self.name: str = name
