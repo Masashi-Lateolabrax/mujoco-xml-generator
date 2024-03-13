@@ -34,7 +34,7 @@ class LengthRange:
             interval: float = 2.0,
             tolrange: float = 0.05
     ):
-        self.mode = utils.Attribution("mode", str(mode) if mode is not None else None)
+        self.mode = utils.Attribution("mode", utils.str_or_none(mode))
         self.useexisting = utils.Attribution("useexisting", useexisting)
         self.uselimit = utils.Attribution("uselimit", uselimit)
         self.accel = utils.Attribution("accel", accel)
