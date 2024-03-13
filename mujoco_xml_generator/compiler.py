@@ -66,7 +66,7 @@ class Compiler:
             fusestatic: bool = False,
             inertiafromgeom: BoolOrAuto = BoolOrAuto.Auto,
             exactmeshinertia: bool = False,
-            inertiagrouprange: tuple[int] = (0, 5)
+            inertiagrouprange: tuple[int, int] = (0, 5)
     ):
         self.autolimits = utils.Attribution("autolimits", autolimits)
         self.boundmass = utils.Attribution("boundmass", boundmass)
