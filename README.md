@@ -12,6 +12,7 @@
 | impl   | Indicates implementation of new functions.                  |
 | mv     | Indicates movement or rename of files.                      |
 | remove | Indicates removal of files or directories.                  |
+| test   | Indicates something about tests.                            |
 
 We define suffixes for above prefixes. For example, "impl-ing".
 
