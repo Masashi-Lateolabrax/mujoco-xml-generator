@@ -1,4 +1,5 @@
 from mujoco_xml_generator import utils
+from mujoco_xml_generator import common
 from mujoco_xml_generator.compiler.lengthrange import LengthRange
 import enum
 
@@ -16,21 +17,6 @@ class Compiler:
                     return "local"
                 case Compiler.LocalOrGlobal.Global:
                     return "global"
-            raise "Unexpected error occurred."
-
-    class BoolOrAuto(enum.Enum):
-        Auto = 0
-        T = 1
-        F = 2
-
-        def __str__(self) -> str:
-            match self:
-                case Compiler.BoolOrAuto.T:
-                    return "true"
-                case Compiler.BoolOrAuto.F:
-                    return "false"
-                case Compiler.BoolOrAuto.Auto:
-                    return "auto"
             raise "Unexpected error occurred."
 
     class AngleType(enum.Enum):
@@ -64,7 +50,7 @@ class Compiler:
             convexhull: bool = True,
             usethread: bool = True,
             fusestatic: bool = False,
-            inertiafromgeom: BoolOrAuto = BoolOrAuto.Auto,
+            inertiafromgeom: common.BoolOrAuto = common.BoolOrAuto.AUTO,
             exactmeshinertia: bool = False,
             inertiagrouprange: tuple[int, int] = (0, 5)
     ):
