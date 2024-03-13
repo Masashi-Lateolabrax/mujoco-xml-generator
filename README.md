@@ -10,6 +10,7 @@
 | docs   | Indicates modifications made to documents or similar items. |
 | fix    | Indicates bug fixes.                                        |
 | impl   | Indicates implementation of new functions.                  |
+| mv     | Indicates movement or rename of files.                      |
 | remove | Indicates removal of files or directories.                  |
 
 If you want to commit changes while editing, please use the "-ing" suffix. For example, "impl-ing".
