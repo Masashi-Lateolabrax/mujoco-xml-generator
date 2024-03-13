@@ -35,8 +35,8 @@ class LengthRange(_ToString):
             tolrange: float = 0.05
     ):
         self.mode: str = mode.to_string()
-        self.useexisting: bool = useexisting
-        self.uselimit: bool = uselimit
+        self.useexisting: str = str(useexisting).lower()
+        self.uselimit: str = str(uselimit).lower()
         self.accel: float = accel
         self.maxforce: float = maxforce
         self.timeconst: float = timeconst
@@ -46,4 +46,15 @@ class LengthRange(_ToString):
         self.tolrange: float = tolrange
 
     def to_string(self) -> str:
-        pass
+        res = "<lengthrange "
+        res += f"mode=\"{self.mode}\" "
+        res += f"useexisting=\"{self.useexisting}\" "
+        res += f"accel={self.accel} "
+        res += f"maxforce={self.maxforce} "
+        res += f"timeconst={self.timeconst} "
+        res += f"timestep={self.timestep} "
+        res += f"inttotal={self.inttotal} "
+        res += f"interval={self.interval} "
+        res += f"tolrange={self.tolrange} "
+        res += "/>"
+        return res
