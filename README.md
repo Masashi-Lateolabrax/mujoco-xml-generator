@@ -9,6 +9,7 @@
 | add    | Indicates addition of new files or directories.             |
 | docs   | Indicates modifications made to documents or similar items. |
 | fix    | Indicates bug fixes.                                        |
+| impl   | Indicates implementation of new functions.                  |
 | remove | Indicates removal of files or directories.                  |
 
 ### How to treat the dependencies
