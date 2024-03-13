@@ -13,7 +13,13 @@
 | mv     | Indicates movement or rename of files.                      |
 | remove | Indicates removal of files or directories.                  |
 
-If you want to commit changes while editing, please use the "-ing" suffix. For example, "impl-ing".
+We define suffixes for above prefixes. For example, "impl-ing".
+
+| Suffix | Definition                                     |
+|--------|------------------------------------------------|
+| -ing   | Indicates that something has not finished yet. |
+| -suc   | Indicates that something has succeed.          |
+| -fail  | Indicates that something has failed.           |
 
 ### How to treat the dependencies
 
