@@ -100,4 +100,30 @@ class Compiler:
         self.children.append(child)
 
     def __str__(self) -> str:
-        pass
+        attributions = utils.arrange_attributions([
+            self.autolimits,
+            self.boundmass,
+            self.boundinertia,
+            self.settotalmass,
+            self.balanceinertia,
+            self.strippath,
+            self.coordinate,
+            self.angle,
+            self.fitaabb,
+            self.eulerseq,
+            self.meshdir,
+            self.texturedir,
+            self.assetdir,
+            self.discardvisual,
+            self.convexhull,
+            self.usethread,
+            self.fusestatic,
+            self.inertiafromgeom,
+            self.exactmeshinertia,
+            self.inertiagrouprange
+        ])
+        return "\n".join([
+            f"<compiler {attributions}>",
+            "\n".join([str(c) for c in self.children]),
+            "</compiler>"
+        ])
