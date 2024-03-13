@@ -4,6 +4,8 @@ import enum
 
 
 class Compiler:
+    SUPPORTED_CHILDREN_TYPES = [LengthRange]
+
     class LocalOrGlobal(enum.Enum):
         Local = 0
         Global = 1
@@ -14,6 +16,21 @@ class Compiler:
                     return "local"
                 case Compiler.LocalOrGlobal.Global:
                     return "global"
+            raise "Unexpected error occurred."
+
+    class BoolOrAuto(enum.Enum):
+        Auto = 0
+        T = 1
+        F = 2
+
+        def __str__(self) -> str:
+            match self:
+                case Compiler.BoolOrAuto.T:
+                    return "true"
+                case Compiler.BoolOrAuto.F:
+                    return "false"
+                case Compiler.BoolOrAuto.Auto:
+                    return "auto"
             raise "Unexpected error occurred."
 
     class AngleType(enum.Enum):
@@ -47,7 +64,7 @@ class Compiler:
             convexhull: bool = True,
             usethread: bool = True,
             fusestatic: bool = False,
-            inertiafromgeom: bool | None = None,  # None represents "auto".
+            inertiafromgeom: BoolOrAuto = BoolOrAuto.Auto,
             exactmeshinertia: bool = False,
             inertiagrouprange: tuple[int] = (0, 5)
     ):
@@ -68,7 +85,7 @@ class Compiler:
         self.convexhull = utils.Attribution("convexhull", convexhull)
         self.usethread = utils.Attribution("usethread", usethread)
         self.fusestatic = utils.Attribution("fusestatic", fusestatic)
-        self.inertiafromgeom = utils.Attribution("inertiafromgeom", inertiafromgeom)
+        self.inertiafromgeom = utils.Attribution("inertiafromgeom", utils.str_or_none(inertiafromgeom))
         self.exactmeshinertia = utils.Attribution("exactmeshinertia", exactmeshinertia)
         self.inertiagrouprange = utils.Attribution("inertiagrouprange", inertiagrouprange)
 
