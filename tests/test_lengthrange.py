@@ -1,4 +1,4 @@
-from mujoco_xml_generator.lengthrange import *
+from mujoco_xml_generator.compiler.lengthrange import *
 
 
 def test_to_string():
