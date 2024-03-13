@@ -5,12 +5,12 @@ def str_or_none(x) -> str | None:
 
 
 class Attribution:
-    def __init__(self, name: str, value: float | int | bool | tuple | str | None = None):
+    def __init__(self, name: str, value: float | int | bool | tuple | list | str | None = None):
         self.name: str = name
 
         if type(value) is bool:
             self.value = str(value).lower()
-        elif type(value) is tuple:
+        elif type(value) is tuple or type(value) is list:
             vs = []
             for v in value:
                 if type(v) is not int and type(v) is not float:
