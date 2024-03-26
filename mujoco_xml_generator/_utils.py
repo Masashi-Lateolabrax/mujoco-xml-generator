@@ -14,10 +14,14 @@ def get_type_or_none(x: interface.GetTypeInterface) -> str | None:
 
 
 class Attribution:
-    def __init__(self, name: str, value: float | int | bool | tuple | list | str | None = None, force_type=lambda x: x):
+    def __init__(
+            self, name: str, value: float | int | bool | tuple | list | str | None, force_type=lambda x: x, default=None
+    ):
         self.name: str = name
 
         if value is None:
+            self.value = None
+        elif value == default:
             self.value = None
         elif type(value) is bool:
             self.value = str(value).lower()
