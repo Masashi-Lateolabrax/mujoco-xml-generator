@@ -109,6 +109,7 @@ class Compiler:
         ])
         return "\n".join([
             f"<compiler {attributions}>",
-            "\n".join([str(c) for c in self.children]),
+            "\t",
+            "\n\t".join([str(c) for c in self.children]),
             "</compiler>"
         ])
