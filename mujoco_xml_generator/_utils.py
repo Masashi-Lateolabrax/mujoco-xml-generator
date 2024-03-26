@@ -1,12 +1,6 @@
 from mujoco_xml_generator import interface
 
 
-def str_or_none(x) -> str | None:
-    if x is None:
-        return None
-    return str(x)
-
-
 def get_type_or_none(x: interface.GetTypeInterface) -> str | None:
     if x is None:
         return None
@@ -14,9 +8,7 @@ def get_type_or_none(x: interface.GetTypeInterface) -> str | None:
 
 
 class Attribution:
-    def __init__(
-            self, name: str, value: float | int | bool | tuple | list | str | None, force_type=lambda x: x, default=None
-    ):
+    def __init__(self, name: str, value, force_type, default=None):
         self.name: str = name
 
         if value is None:
@@ -34,6 +26,8 @@ class Attribution:
             self.value = " ".join(vs)
         else:
             self.value = force_type(value)
+            if type(self.value) is bool:
+                self.value = str(self.value).lower()
 
     def is_none(self) -> bool:
         return self.value is None
@@ -45,12 +39,15 @@ class Attribution:
 
 
 def arrange_attributions(attributions: list[Attribution]) -> str:
-    return " ".join(str(a) for a in filter(lambda x: not x.is_none(), attributions))
+    if len(attributions) == 0:
+        return ""
+
+    res = [str(a) for a in filter(lambda x: not x.is_none(), attributions)]
+    res.insert(0, "")
+    return " ".join(res)
 
 
 def gen_xml(element_name: str, attributions: str, children: list):
-    if len(attributions) > 0:
-        attributions = " " + attributions
     xml = [f"<{element_name}{attributions}>", f"</{element_name}>"]
     if len(children) > 0:
         xml.insert(1, "\n".join(["\t" + str(c) for c in children]))

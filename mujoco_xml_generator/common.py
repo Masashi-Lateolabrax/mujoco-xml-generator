@@ -33,8 +33,9 @@ class Orientation:
             return f"{float(self.x)} {float(self.y)} {float(self.z)} {float(self.a)}"
 
         def __eq__(self, other) -> bool:
-            res = type(self) is type(other)
-            res &= self.x == other.x
+            if type(self) is not type(other):
+                return False
+            res = self.x == other.x
             res &= self.y == other.y
             res &= self.z == other.z
             res &= self.a == other.a
@@ -54,8 +55,9 @@ class Orientation:
             return f"{float(self.a)} {float(self.b)} {float(self.c)} {float(self.d)}"
 
         def __eq__(self, other) -> bool:
-            res = type(self) is type(other)
-            res &= self.a == other.a
+            if type(self) is not type(other):
+                return False
+            res = self.a == other.a
             res &= self.b == other.b
             res &= self.c == other.c
             res &= self.d == other.d
@@ -75,8 +77,9 @@ class Orientation:
             return f"{float(self.a)} {float(self.b)} {float(self.c)} {float(self.d)}"
 
         def __eq__(self, other) -> bool:
-            res = type(self) is type(other)
-            res &= self.a == other.a
+            if type(self) is not type(other):
+                return False
+            res = self.a == other.a
             res &= self.b == other.b
             res &= self.c == other.c
             res &= self.d == other.d
@@ -98,8 +101,9 @@ class Orientation:
             return f"{float(self.a)} {float(self.b)} {float(self.c)} {float(self.d)} {float(self.e)} {float(self.f)}"
 
         def __eq__(self, other) -> bool:
-            res = type(self) is type(other)
-            res &= self.a == other.a
+            if type(self) is type(other):
+                return False
+            res = self.a == other.a
             res &= self.b == other.b
             res &= self.c == other.c
             res &= self.d == other.d
@@ -120,8 +124,9 @@ class Orientation:
             return f"{float(self.a)} {float(self.b)} {float(self.c)}"
 
         def __eq__(self, other) -> bool:
-            res = type(self) is type(other)
-            res &= self.a == other.a
+            if type(self) is not type(other):
+                return False
+            res = self.a == other.a
             res &= self.b == other.b
             res &= self.c == other.c
             return res
@@ -139,9 +144,9 @@ class Weight:
             return str(float(self.value))
 
         def __eq__(self, other) -> bool:
-            res = type(self) is type(other)
-            res &= self.value == other.value
-            return res
+            if type(self) is not type(other):
+                return False
+            return self.value == other.value
 
         def get_type(self) -> str:
             return "mass"
@@ -154,9 +159,9 @@ class Weight:
             return str(float(self.value))
 
         def __eq__(self, other) -> bool:
-            res = type(self) is type(other)
-            res &= self.value == other.value
-            return res
+            if type(self) is type(other):
+                return False
+            return self.value == other.value
 
         def get_type(self) -> str:
             return "density"

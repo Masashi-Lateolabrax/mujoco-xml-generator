@@ -3,7 +3,7 @@ from mujoco_xml_generator.compiler import LengthRange
 
 def test_to_string():
     sample = LengthRange()
-    answer = "<lengthrange mode=\"muscle\" useexisting=\"true\" uselimit=\"false\" accel=\"20.0\" maxforce=\"0.0\" timeconst=\"1.0\" timestep=\"0.01\" inttotal=\"10.0\" interval=\"2.0\" tolrange=\"0.05\" />"
+    answer = "<lengthrange/>"
     assert str(sample) == answer
 
 
@@ -14,10 +14,10 @@ def test_to_string_with_none():
         uselimit=None,
         accel=None,
         maxforce=None,
-        timeconst=1,
-        timestep=0.01,
+        timeconst=2,
+        timestep=0.03,
         inttotal=None,
         interval=None,
         tolrange=None
     )
-    assert str(sample) == "<lengthrange useexisting=\"false\" timeconst=\"1\" timestep=\"0.01\" />"
+    assert str(sample) == "<lengthrange useexisting=\"false\" timeconst=\"2.0\" timestep=\"0.03\"/>"

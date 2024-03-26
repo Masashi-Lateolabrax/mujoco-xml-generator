@@ -23,27 +23,27 @@ class LengthRange:
 
     def __init__(
             self,
-            mode: Mode = Mode.Muscle,
-            useexisting: bool = True,
-            uselimit: bool = False,
-            accel: float = 20.0,
-            maxforce: float = 0.0,
-            timeconst: float = 1.0,
-            timestep: float = 0.01,
-            inttotal: float = 10.0,
-            interval: float = 2.0,
-            tolrange: float = 0.05
+            mode: Mode | None = Mode.Muscle,
+            useexisting: bool | None = True,
+            uselimit: bool | None = False,
+            accel: float | None = 20.0,
+            maxforce: float | None = 0.0,
+            timeconst: float | None = 1.0,
+            timestep: float | None = 0.01,
+            inttotal: float | None = 10.0,
+            interval: float | None = 2.0,
+            tolrange: float | None = 0.05
     ):
-        self.mode = utils.Attribution("mode", utils.str_or_none(mode))
-        self.useexisting = utils.Attribution("useexisting", useexisting)
-        self.uselimit = utils.Attribution("uselimit", uselimit)
-        self.accel = utils.Attribution("accel", accel)
-        self.maxforce = utils.Attribution("maxforce", maxforce)
-        self.timeconst = utils.Attribution("timeconst", timeconst)
-        self.timestep = utils.Attribution("timestep", timestep)
-        self.inttotal = utils.Attribution("inttotal", inttotal)
-        self.interval = utils.Attribution("interval", interval)
-        self.tolrange = utils.Attribution("tolrange", tolrange)
+        self.mode = utils.Attribution("mode", mode, str, LengthRange.Mode.Muscle)
+        self.useexisting = utils.Attribution("useexisting", useexisting, bool, True)
+        self.uselimit = utils.Attribution("uselimit", uselimit, bool, False)
+        self.accel = utils.Attribution("accel", accel, float, 20.0)
+        self.maxforce = utils.Attribution("maxforce", maxforce, float, 0.0)
+        self.timeconst = utils.Attribution("timeconst", timeconst, float, 1.0)
+        self.timestep = utils.Attribution("timestep", timestep, float, 0.01)
+        self.inttotal = utils.Attribution("inttotal", inttotal, float, 10.0)
+        self.interval = utils.Attribution("interval", interval, float, 2.0)
+        self.tolrange = utils.Attribution("tolrange", tolrange, float, 0.05)
 
     def __str__(self) -> str:
         attributions = utils.arrange_attributions([
@@ -58,4 +58,4 @@ class LengthRange:
             self.interval,
             self.tolrange
         ])
-        return f"<lengthrange {attributions} />"
+        return f"<lengthrange{attributions}/>"

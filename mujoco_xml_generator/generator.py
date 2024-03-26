@@ -7,7 +7,7 @@ class Generator:
     SUPPORTED_CHILDREN_TYPES = [WorldBody, Body]
 
     def __init__(self, model: str = "MuJoCo Model"):
-        self.model = utils.Attribution("model", model)
+        self.model = utils.Attribution("model", model, str, "MuJoCo Model")
 
         self.children = []
 
