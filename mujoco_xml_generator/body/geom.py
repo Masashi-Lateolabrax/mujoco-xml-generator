@@ -4,33 +4,33 @@ from mujoco_xml_generator import common, interface, _utils as utils
 
 class Geom:
     class GeomType(enum.Enum):
-        Plane = 0
-        HField = 1
-        Sphere = 2
-        Capsule = 3
-        Ellipsoid = 4
-        Cylinder = 5
-        Box = 6
-        Mesh = 7
+        PLANE = 0
+        H_FIELD = 1
+        SPHERE = 2
+        CAPSULE = 3
+        ELLIPSOID = 4
+        CYLINDER = 5
+        BOX = 6
+        MESH = 7
         SDF = 8
 
         def __str__(self) -> str:
             match self:
-                case Geom.GeomType.Plane:
+                case Geom.GeomType.PLANE:
                     return "plane"
-                case Geom.GeomType.HField:
+                case Geom.GeomType.H_FIELD:
                     return "hfield"
-                case Geom.GeomType.Sphere:
+                case Geom.GeomType.SPHERE:
                     return "sphere"
-                case Geom.GeomType.Capsule:
+                case Geom.GeomType.CAPSULE:
                     return "capsule"
-                case Geom.GeomType.Ellipsoid:
+                case Geom.GeomType.ELLIPSOID:
                     return "ellipsoid"
-                case Geom.GeomType.Cylinder:
+                case Geom.GeomType.CYLINDER:
                     return "cylinder"
-                case Geom.GeomType.Box:
+                case Geom.GeomType.BOX:
                     return "box"
-                case Geom.GeomType.Mesh:
+                case Geom.GeomType.MESH:
                     return "mesh"
                 case Geom.GeomType.SDF:
                     return "sdf"
@@ -52,7 +52,7 @@ class Geom:
             self,
             name: str | None = None,
             class_: str | None = None,
-            type_: GeomType = GeomType.Sphere,
+            type_: GeomType = GeomType.SPHERE,
             contype: int = 1,
             conaffinity: int = 1,
             condim: int = 3,
