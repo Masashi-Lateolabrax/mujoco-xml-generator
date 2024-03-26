@@ -1,7 +1,6 @@
 from mujoco_xml_generator import common, utils, interface
 
-from mujoco_xml_generator.body.geom import Geom
-from mujoco_xml_generator.body.joint import Joint
+from mujoco_xml_generator.body import Geom, Joint
 
 
 class Body:
