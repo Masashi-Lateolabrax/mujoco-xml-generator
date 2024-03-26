@@ -1,6 +1,5 @@
-from mujoco_xml_generator import utils, interface
-from mujoco_xml_generator import common
 import enum
+from mujoco_xml_generator import common, interface, _utils as utils
 
 
 class Geom:

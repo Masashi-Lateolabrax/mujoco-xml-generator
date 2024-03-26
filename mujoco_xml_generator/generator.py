@@ -1,4 +1,4 @@
-from mujoco_xml_generator import utils
+from mujoco_xml_generator import _utils as utils
 
 from mujoco_xml_generator import Body
 

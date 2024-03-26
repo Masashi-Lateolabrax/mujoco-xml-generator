@@ -1,6 +1,5 @@
-from mujoco_xml_generator import common
-from mujoco_xml_generator import utils
 import enum
+from mujoco_xml_generator import common, _utils as utils
 
 
 class Joint:

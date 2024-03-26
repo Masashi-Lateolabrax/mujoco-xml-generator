@@ -1,5 +1,5 @@
-from mujoco_xml_generator import utils
 import enum
+from mujoco_xml_generator import _utils as utils
 
 
 class LengthRange:

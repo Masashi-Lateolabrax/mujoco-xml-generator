@@ -1,4 +1,4 @@
-from mujoco_xml_generator import common, utils, interface
+from mujoco_xml_generator import common, interface, _utils as utils
 
 from .geom import Geom
 from .joint import Joint
