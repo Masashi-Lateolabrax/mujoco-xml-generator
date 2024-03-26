@@ -32,6 +32,7 @@ class Body:
             if type(c) is not Body and type(c) not in Body.SUPPORTED_CHILDREN_TYPES:
                 raise "Unsupported type is added."
             self.children.append(c)
+        return self
 
     def __str__(self) -> str:
         attributions = utils.arrange_attributions([
