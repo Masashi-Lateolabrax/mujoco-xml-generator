@@ -1,10 +1,11 @@
 from mujoco_xml_generator import _utils as utils
 
 from mujoco_xml_generator import WorldBody, Body
+from mujoco_xml_generator import Visual
 
 
 class Generator:
-    SUPPORTED_CHILDREN_TYPES = [WorldBody, Body]
+    SUPPORTED_CHILDREN_TYPES = [WorldBody, Body, Visual]
 
     def __init__(self, model: str | None = "MuJoCo Model"):
         self.model = utils.Attribution("model", model, str, "MuJoCo Model")
