@@ -16,7 +16,7 @@ class Generator:
     def add_children(self, children: list):
         for c in children:
             if type(c) not in Generator.SUPPORTED_CHILDREN_TYPES:
-                raise "Unsupported type is added."
+                raise f"Unsupported type is added. : {c}"
             self.children.append(c)
         return self
 
