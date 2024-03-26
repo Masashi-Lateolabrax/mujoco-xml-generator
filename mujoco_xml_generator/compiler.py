@@ -81,6 +81,7 @@ class Compiler:
         for t in Compiler.SUPPORTED_CHILDREN_TYPES:
             if type(child) is t:
                 self.children.append(child)
+                return self
         raise "Unsupported type is added."
 
     def __str__(self) -> str:
@@ -108,6 +109,7 @@ class Compiler:
         ])
         return "\n".join([
             f"<compiler {attributions}>",
-            "\n".join([str(c) for c in self.children]),
+            "\t",
+            "\n\t".join([str(c) for c in self.children]),
             "</compiler>"
         ])
