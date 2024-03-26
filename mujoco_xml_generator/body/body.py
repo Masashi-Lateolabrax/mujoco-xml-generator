@@ -30,6 +30,7 @@ class Body:
         for t in Body.SUPPORTED_CHILDREN_TYPES:
             if type(child) is t:
                 self.children.append(child)
+                return self
         raise "Unsupported type is added."
 
     def __str__(self) -> str:
