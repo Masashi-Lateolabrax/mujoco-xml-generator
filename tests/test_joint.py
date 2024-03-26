@@ -17,4 +17,4 @@ def test_to_string_with_none():
         axis=(1.0, 2.0, 3.0),
         limited=common.BoolOrAuto.TRUE,
     )
-    assert str(sample) == "<joint name=\"joint\" class=\"class\" axis=\"1.0 2.0 3.0\" limited=\"true\"/>"
+    assert sample.to_xml() == "<joint name=\"joint\" class=\"class\" axis=\"1.0 2.0 3.0\" limited=\"true\"/>"

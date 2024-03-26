@@ -21,4 +21,4 @@ def test_to_string_with_none():
         density=1000,
         orientation=common.Orientation.Quaternion(1, 0, 0, 0)
     )
-    assert str(sample) == "<geom name=\"geom\" type=\"plane\" condim=\"2\" size=\"0.1 0.2 3.0\"/>"
+    assert sample.to_xml() == "<geom name=\"geom\" type=\"plane\" condim=\"2\" size=\"0.1 0.2 3.0\"/>"
