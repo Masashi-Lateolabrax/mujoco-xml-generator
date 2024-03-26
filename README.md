@@ -23,17 +23,3 @@ We define suffixes for above prefixes. For example, "impl-ing".
 | -ing   | Indicates that something has not finished yet. |
 | -suc   | Indicates that something has succeed.          |
 | -fail  | Indicates that something has failed.           |
-
-### How to treat the dependencies
-
-To record the dependencies
-
-```commandline
-pip freeze > requirements.txt
-```
-
-To install the dependencies
-
-```commandline
-pip install -r requirements.txt
-```
