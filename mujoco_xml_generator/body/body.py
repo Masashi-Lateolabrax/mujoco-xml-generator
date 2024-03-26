@@ -53,22 +53,18 @@ class Body:
         return utils.gen_xml("body", attributions, self.children)
 
 
+class WorldBody:
+    SUPPORTED_CHILDREN_TYPES = [Body, Geom]
+
+    def __init__(self):
+        self.children = []
+
     def add_child(self, child):
-        for t in Body.SUPPORTED_CHILDREN_TYPES:
+        for t in WorldBody.SUPPORTED_CHILDREN_TYPES:
             if type(child) is t:
                 self.children.append(child)
                 return self
         raise "Unsupported type is added."
 
     def __str__(self) -> str:
-        attributions = utils.arrange_attributions([
-            self.name,
-            self.childclass,
-            self.pos,
-            self.orientation,
-            self.mocap,
-            self.gravcomp,
-            self.user
-        ])
-
-        return utils.gen_xml("body", attributions, self.children)
+        return utils.gen_xml("worldbody", "", self.children)
