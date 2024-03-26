@@ -88,3 +88,42 @@ class Orientation:
 
         def get_type(self) -> str:
             return "zaxis"
+
+
+class BoolOrAuto(enum.Enum):
+    AUTO = 0
+    TRUE = 1
+    FALSE = 2
+
+    def __str__(self) -> str:
+        match self:
+            case BoolOrAuto.TRUE:
+                return "true"
+            case BoolOrAuto.FALSE:
+                return "false"
+            case BoolOrAuto.AUTO:
+                return "auto"
+        raise "Unexpected error occurred."
+
+
+class Weight:
+    class Mass(interface.Weight):
+
+        def __init__(self, mass: float):
+            self.value = mass
+
+        def __str__(self) -> str:
+            return str(self.value)
+
+        def get_type(self) -> str:
+            return "mass"
+
+    class Density(interface.Weight):
+        def __init__(self, density: float):
+            self.value = density
+
+        def __str__(self) -> str:
+            return str(self.value)
+
+        def get_type(self) -> str:
+            return "density"
