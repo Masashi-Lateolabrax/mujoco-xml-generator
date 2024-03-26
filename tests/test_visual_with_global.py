@@ -1,5 +1,4 @@
-from mujoco_xml_generator import Visual
-from mujoco_xml_generator import visual
+from mujoco_xml_generator import Visual, visual
 
 
 def test_to_string():
