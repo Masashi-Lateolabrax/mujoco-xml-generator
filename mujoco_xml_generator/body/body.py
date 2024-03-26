@@ -1,6 +1,7 @@
 from mujoco_xml_generator import common, utils, interface
 
-from mujoco_xml_generator.body import Geom, Joint
+from .geom import Geom
+from .joint import Joint
 
 
 class Body:
@@ -19,7 +20,7 @@ class Body:
         self.name = utils.Attribution("name", name)
         self.childclass = utils.Attribution("childclass", childclass)
         self.pos = utils.Attribution("pos", pos)
-        self.orientation = utils.Attribution(orientation.get_type(), utils.str_or_none(orientation))
+        self.orientation = utils.Attribution(utils.get_type_or_none(orientation), utils.str_or_none(orientation))
         self.mocap = utils.Attribution("mocap", mocap)
         self.gravcomp = utils.Attribution("gravcomp", gravcomp)
         self.user = utils.Attribution("user", user)
@@ -44,9 +45,4 @@ class Body:
             self.user
         ])
 
-        return "\n".join([
-            f"<body {attributions}>",
-            "\t",
-            "\n\t".join([str(c) for c in self.children]),
-            "</body>"
-        ])
+        return utils.gen_xml("body", attributions, self.children)

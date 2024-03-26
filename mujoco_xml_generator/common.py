@@ -1,7 +1,7 @@
 import enum
 import math
 
-import interface
+from mujoco_xml_generator import interface
 
 
 class BoolOrAuto(enum.Enum):
