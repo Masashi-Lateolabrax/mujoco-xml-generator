@@ -7,27 +7,29 @@ def str_or_none(x) -> str | None:
     return str(x)
 
 
-def get_type_or_none(x: interface.Orientation) -> str | None:
+def get_type_or_none(x: interface.GetTypeInterface) -> str | None:
     if x is None:
         return None
     return x.get_type()
 
 
 class Attribution:
-    def __init__(self, name: str, value: float | int | bool | tuple | list | str | None = None):
+    def __init__(self, name: str, value: float | int | bool | tuple | list | str | None = None, force_type=lambda x: x):
         self.name: str = name
 
-        if type(value) is bool:
+        if value is None:
+            self.value = None
+        elif type(value) is bool:
             self.value = str(value).lower()
         elif type(value) is tuple or type(value) is list:
             vs = []
             for v in value:
-                if type(v) is not int and type(v) is not float:
+                if not (type(v) is int or type(v) is float):
                     raise "Specified type is unsupported."
-                vs.append(str(v))
+                vs.append(str(force_type(v)))
             self.value = " ".join(vs)
         else:
-            self.value = value
+            self.value = force_type(value)
 
     def is_none(self) -> bool:
         return self.value is None
