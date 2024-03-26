@@ -1,4 +1,4 @@
-from mujoco_xml_generator import Body, Orientation
+from mujoco_xml_generator import WorldBody, Body, Orientation
 
 
 def test_to_string():
@@ -29,3 +29,8 @@ def test_to_string_with_none():
         "</body>"
     ])
     assert str(sample) == answer
+
+
+def test_to_string_for_world():
+    sample = WorldBody()
+    assert str(sample) == "<worldbody>\n</worldbody>"
