@@ -1,10 +1,11 @@
 from mujoco_xml_generator import common, utils, interface
 
 from mujoco_xml_generator.body.geom import Geom
+from mujoco_xml_generator.body.joint import Joint
 
 
 class Body:
-    SUPPORTED_CHILDREN_TYPES = [Geom]
+    SUPPORTED_CHILDREN_TYPES = [Geom, Joint]
 
     def __init__(
             self,
