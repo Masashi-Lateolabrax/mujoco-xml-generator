@@ -1,8 +1,10 @@
 from mujoco_xml_generator import _utils as utils
 
+from .geom import Geom
+
 
 class Default(utils.MuJoCoElement):
-    SUPPORTED_CHILDREN_TYPES = []
+    SUPPORTED_CHILDREN_TYPES = [Geom]
 
     def __init__(self, class_: str):
         self.class_ = utils.Attribution("class", class_, str)
@@ -16,7 +18,7 @@ class Default(utils.MuJoCoElement):
 
     def add_children(self, children: list):
         for c in children:
-            if type(c) not in Default.SUPPORTED_CHILDREN_TYPES:
+            if type(c) is not Default and type(c) not in Default.SUPPORTED_CHILDREN_TYPES:
                 raise "Unsupported type is added."
             self.children.append(c)
         return self
