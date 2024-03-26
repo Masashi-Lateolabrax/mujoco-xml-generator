@@ -31,7 +31,7 @@ class Orientation:
             self.a = a
 
         def __str__(self) -> str:
-            return f"{self.x} {self.y} {self.z} {self.a}"
+            return f"{float(self.x)} {float(self.y)} {float(self.z)} {float(self.a)}"
 
         def get_type(self) -> str:
             return "axisangle"
@@ -44,7 +44,7 @@ class Orientation:
             self.d = d
 
         def __str__(self) -> str:
-            return f"{self.a} {self.b} {self.c} {self.d}"
+            return f"{float(self.a)} {float(self.b)} {float(self.c)} {float(self.d)}"
 
         def get_type(self) -> str:
             return "quat"
@@ -57,7 +57,7 @@ class Orientation:
             self.d = d
 
         def __str__(self) -> str:
-            return f"{self.a} {self.b} {self.c} {self.d}"
+            return f"{float(self.a)} {float(self.b)} {float(self.c)} {float(self.d)}"
 
         def get_type(self) -> str:
             return "euler"
@@ -72,7 +72,7 @@ class Orientation:
             self.f = f
 
         def __str__(self) -> str:
-            return f"{self.a} {self.b} {self.c} {self.d} {self.e} {self.f}"
+            return f"{float(self.a)} {float(self.b)} {float(self.c)} {float(self.d)} {float(self.e)} {float(self.f)}"
 
         def get_type(self) -> str:
             return "xyaxes"
@@ -84,7 +84,7 @@ class Orientation:
             self.c = c
 
         def __str__(self) -> str:
-            return f"{self.a} {self.b} {self.c}"
+            return f"{float(self.a)} {float(self.b)} {float(self.c)}"
 
         def get_type(self) -> str:
             return "zaxis"
