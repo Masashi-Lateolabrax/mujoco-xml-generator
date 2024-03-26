@@ -1,7 +1,7 @@
-from mujoco_xml_generator import utils
-from mujoco_xml_generator import common
-from mujoco_xml_generator.compiler import LengthRange
 import enum
+from mujoco_xml_generator import common, utils
+
+from mujoco_xml_generator.compiler import LengthRange
 
 
 class Compiler:

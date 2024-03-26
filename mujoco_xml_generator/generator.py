@@ -1,6 +1,6 @@
 from mujoco_xml_generator import utils
 
-from mujoco_xml_generator.body import Body
+from mujoco_xml_generator import Body
 
 
 class Generator:
@@ -19,13 +19,5 @@ class Generator:
         raise "Unsupported type is added."
 
     def build(self):
-        attributions = utils.arrange_attributions([
-            self.model
-        ])
-
-        return "\n".join([
-            f"<model {attributions}>",
-            "\t",
-            "\n\t".join([str(c) for c in self.children]),
-            "</model>"
-        ])
+        attributions = utils.arrange_attributions([self.model])
+        return utils.gen_xml("mujoco", attributions, self.children)

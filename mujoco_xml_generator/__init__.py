@@ -1,7 +1,9 @@
-from .generator import Generator
+from .common import Orientation, BoolOrAuto
 
 from .body.body import Body
-import body
+from . import body
 
 from .compiler.compiler import Compiler
-import compiler
+from . import compiler
+
+from .generator import Generator

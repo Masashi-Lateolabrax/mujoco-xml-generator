@@ -42,8 +42,10 @@ def arrange_attributions(attributions: list[Attribution]) -> str:
     return " ".join(str(a) for a in filter(lambda x: not x.is_none(), attributions))
 
 
-def gen_xml(element_name, attributions, children):
-    xml = [f"<{element_name} {attributions}>", f"</{element_name}>"]
+def gen_xml(element_name: str, attributions: str, children: list):
+    if len(attributions) > 0:
+        attributions = " " + attributions
+    xml = [f"<{element_name}{attributions}>", f"</{element_name}>"]
     if len(children) > 0:
         xml.insert(1, "\n".join(["\t" + str(c) for c in children]))
     return "\n".join(xml)
