@@ -1,10 +1,10 @@
 from mujoco_xml_generator import _utils as utils
 
-from mujoco_xml_generator import Body
+from mujoco_xml_generator import WorldBody, Body
 
 
 class Generator:
-    SUPPORTED_CHILDREN_TYPES = [Body]
+    SUPPORTED_CHILDREN_TYPES = [WorldBody, Body]
 
     def __init__(self, model: str = "MuJoCo Model"):
         self.model = utils.Attribution("model", model)
