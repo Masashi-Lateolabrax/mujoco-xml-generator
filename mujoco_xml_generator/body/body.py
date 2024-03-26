@@ -59,6 +59,7 @@ class WorldBody:
             if type(c) not in WorldBody.SUPPORTED_CHILDREN_TYPES:
                 raise "Unsupported type is added."
             self.children.append(c)
+        return self
 
     def __str__(self) -> str:
         return utils.gen_xml("worldbody", "", self.children)
