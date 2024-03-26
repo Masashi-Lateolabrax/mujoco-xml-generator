@@ -1,4 +1,4 @@
-from mujoco_xml_generator.utils import *
+from mujoco_xml_generator._utils import *
 
 
 def test_attributions_to_str():
