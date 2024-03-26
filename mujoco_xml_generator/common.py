@@ -4,6 +4,53 @@ import math
 from mujoco_xml_generator import interface
 
 
+class GeomType(enum.Enum):
+    PLANE = 0
+    H_FIELD = 1
+    SPHERE = 2
+    CAPSULE = 3
+    ELLIPSOID = 4
+    CYLINDER = 5
+    BOX = 6
+    MESH = 7
+    SDF = 8
+
+    def __str__(self) -> str:
+        match self:
+            case GeomType.PLANE:
+                return "plane"
+            case GeomType.H_FIELD:
+                return "hfield"
+            case GeomType.SPHERE:
+                return "sphere"
+            case GeomType.CAPSULE:
+                return "capsule"
+            case GeomType.ELLIPSOID:
+                return "ellipsoid"
+            case GeomType.CYLINDER:
+                return "cylinder"
+            case GeomType.BOX:
+                return "box"
+            case GeomType.MESH:
+                return "mesh"
+            case GeomType.SDF:
+                return "sdf"
+        raise "Unexpected error occurred."
+
+
+class FluidShape(enum.Enum):
+    none = 0
+    ellipsoid = 1
+
+    def __str__(self) -> str:
+        match self:
+            case FluidShape.none:
+                return "none"
+            case FluidShape.ellipsoid:
+                return "ellipsoid"
+        raise "Unexpected error occurred."
+
+
 class BoolOrAuto(enum.Enum):
     AUTO = 0
     TRUE = 1
