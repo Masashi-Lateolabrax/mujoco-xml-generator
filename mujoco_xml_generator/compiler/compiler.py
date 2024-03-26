@@ -77,12 +77,12 @@ class Compiler:
 
         self.children = []
 
-    def add_child(self, child: LengthRange):
-        for t in Compiler.SUPPORTED_CHILDREN_TYPES:
-            if type(child) is t:
-                self.children.append(child)
-                return self
-        raise "Unsupported type is added."
+    def add_children(self, children: list):
+        for c in children:
+            if type(c) not in Compiler.SUPPORTED_CHILDREN_TYPES:
+                raise "Unsupported type is added."
+            self.children.append(c)
+        return self
 
     def __str__(self) -> str:
         attributions = utils.arrange_attributions([

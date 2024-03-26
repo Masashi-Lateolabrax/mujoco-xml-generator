@@ -2,11 +2,11 @@ from mujoco_xml_generator._utils import *
 
 
 def test_attributions_to_str():
-    a = Attribution("test1", 20.5)
-    b = Attribution("test2", None)
-    c = Attribution("test3", 1)
-    d = Attribution("test4", True)
-    e = Attribution("test5", "true")
+    a = Attribution("test1", 20.5, float)
+    b = Attribution("test2", None, int)
+    c = Attribution("test3", 1, int)
+    d = Attribution("test4", True, bool)
+    e = Attribution("test5", "true", bool)
 
     assert str(a) == "test1=\"20.5\""
     assert str(b) == ""
@@ -17,10 +17,10 @@ def test_attributions_to_str():
 
 def test_arrange_attributions():
     attributions = [
-        Attribution("test1", 20.5),
-        Attribution("test2", None),
-        Attribution("test3", 1),
-        Attribution("test4", True),
-        Attribution("test5", "true")
+        Attribution("test1", 20.5, float),
+        Attribution("test2", None, int),
+        Attribution("test3", 1, int),
+        Attribution("test4", True, bool),
+        Attribution("test5", "true", bool)
     ]
-    assert arrange_attributions(attributions) == "test1=\"20.5\" test3=\"1\" test4=\"true\" test5=\"true\""
+    assert arrange_attributions(attributions) == " test1=\"20.5\" test3=\"1\" test4=\"true\" test5=\"true\""

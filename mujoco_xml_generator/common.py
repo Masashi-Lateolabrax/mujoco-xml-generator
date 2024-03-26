@@ -22,7 +22,6 @@ class BoolOrAuto(enum.Enum):
 
 class Orientation:
     class AxisAngle(interface.Orientation):
-
         def __init__(self, x, y, z, a):
             d = math.sqrt(math.pow(x, 2) + math.pow(y, 2) + math.pow(z, 2))
             self.x = x / d
@@ -32,6 +31,15 @@ class Orientation:
 
         def __str__(self) -> str:
             return f"{float(self.x)} {float(self.y)} {float(self.z)} {float(self.a)}"
+
+        def __eq__(self, other) -> bool:
+            if type(self) is not type(other):
+                return False
+            res = self.x == other.x
+            res &= self.y == other.y
+            res &= self.z == other.z
+            res &= self.a == other.a
+            return res
 
         def get_type(self) -> str:
             return "axisangle"
@@ -46,6 +54,15 @@ class Orientation:
         def __str__(self) -> str:
             return f"{float(self.a)} {float(self.b)} {float(self.c)} {float(self.d)}"
 
+        def __eq__(self, other) -> bool:
+            if type(self) is not type(other):
+                return False
+            res = self.a == other.a
+            res &= self.b == other.b
+            res &= self.c == other.c
+            res &= self.d == other.d
+            return res
+
         def get_type(self) -> str:
             return "quat"
 
@@ -58,6 +75,15 @@ class Orientation:
 
         def __str__(self) -> str:
             return f"{float(self.a)} {float(self.b)} {float(self.c)} {float(self.d)}"
+
+        def __eq__(self, other) -> bool:
+            if type(self) is not type(other):
+                return False
+            res = self.a == other.a
+            res &= self.b == other.b
+            res &= self.c == other.c
+            res &= self.d == other.d
+            return res
 
         def get_type(self) -> str:
             return "euler"
@@ -74,6 +100,17 @@ class Orientation:
         def __str__(self) -> str:
             return f"{float(self.a)} {float(self.b)} {float(self.c)} {float(self.d)} {float(self.e)} {float(self.f)}"
 
+        def __eq__(self, other) -> bool:
+            if type(self) is type(other):
+                return False
+            res = self.a == other.a
+            res &= self.b == other.b
+            res &= self.c == other.c
+            res &= self.d == other.d
+            res &= self.e == other.e
+            res &= self.f == other.f
+            return res
+
         def get_type(self) -> str:
             return "xyaxes"
 
@@ -86,7 +123,15 @@ class Orientation:
         def __str__(self) -> str:
             return f"{float(self.a)} {float(self.b)} {float(self.c)}"
 
-        def get_type(self) -> str:
+        def __eq__(self, other) -> bool:
+            if type(self) is not type(other):
+                return False
+            res = self.a == other.a
+            res &= self.b == other.b
+            res &= self.c == other.c
+            return res
+
+        def get_type(sdlf) -> str:
             return "zaxis"
 
 
@@ -98,6 +143,11 @@ class Weight:
         def __str__(self) -> str:
             return str(float(self.value))
 
+        def __eq__(self, other) -> bool:
+            if type(self) is not type(other):
+                return False
+            return self.value == other.value
+
         def get_type(self) -> str:
             return "mass"
 
@@ -107,6 +157,11 @@ class Weight:
 
         def __str__(self) -> str:
             return str(float(self.value))
+
+        def __eq__(self, other) -> bool:
+            if type(self) is type(other):
+                return False
+            return self.value == other.value
 
         def get_type(self) -> str:
             return "density"

@@ -17,13 +17,14 @@ class Body:
             gravcomp: float | None = 0.0,
             user: list[float] | None = None
     ):
-        self.name = utils.Attribution("name", name)
-        self.childclass = utils.Attribution("childclass", childclass)
-        self.pos = utils.Attribution("pos", pos)
-        self.orientation = utils.Attribution(utils.get_type_or_none(orientation), utils.str_or_none(orientation))
-        self.mocap = utils.Attribution("mocap", mocap)
-        self.gravcomp = utils.Attribution("gravcomp", gravcomp)
-        self.user = utils.Attribution("user", user)
+        self.name = utils.Attribution("name", name, str)
+        self.childclass = utils.Attribution("childclass", childclass, str)
+        self.pos = utils.Attribution("pos", pos, float)
+        self.orientation = utils.Attribution(utils.get_type_or_none(orientation), orientation, str,
+                                             common.Orientation.Quaternion(1, 0, 0, 0))
+        self.mocap = utils.Attribution("mocap", mocap, bool, False)
+        self.gravcomp = utils.Attribution("gravcomp", gravcomp, float, 0.0)
+        self.user = utils.Attribution("user", user, float)
 
         self.children = []
 
@@ -32,6 +33,7 @@ class Body:
             if type(c) is not Body and type(c) not in Body.SUPPORTED_CHILDREN_TYPES:
                 raise "Unsupported type is added."
             self.children.append(c)
+        return self
 
     def __str__(self) -> str:
         attributions = utils.arrange_attributions([
@@ -58,6 +60,7 @@ class WorldBody:
             if type(c) not in WorldBody.SUPPORTED_CHILDREN_TYPES:
                 raise "Unsupported type is added."
             self.children.append(c)
+        return self
 
     def __str__(self) -> str:
         return utils.gen_xml("worldbody", "", self.children)

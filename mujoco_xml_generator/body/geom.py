@@ -4,33 +4,33 @@ from mujoco_xml_generator import common, interface, _utils as utils
 
 class Geom:
     class GeomType(enum.Enum):
-        Plane = 0
-        HField = 1
-        Sphere = 2
-        Capsule = 3
-        Ellipsoid = 4
-        Cylinder = 5
-        Box = 6
-        Mesh = 7
+        PLANE = 0
+        H_FIELD = 1
+        SPHERE = 2
+        CAPSULE = 3
+        ELLIPSOID = 4
+        CYLINDER = 5
+        BOX = 6
+        MESH = 7
         SDF = 8
 
         def __str__(self) -> str:
             match self:
-                case Geom.GeomType.Plane:
+                case Geom.GeomType.PLANE:
                     return "plane"
-                case Geom.GeomType.HField:
+                case Geom.GeomType.H_FIELD:
                     return "hfield"
-                case Geom.GeomType.Sphere:
+                case Geom.GeomType.SPHERE:
                     return "sphere"
-                case Geom.GeomType.Capsule:
+                case Geom.GeomType.CAPSULE:
                     return "capsule"
-                case Geom.GeomType.Ellipsoid:
+                case Geom.GeomType.ELLIPSOID:
                     return "ellipsoid"
-                case Geom.GeomType.Cylinder:
+                case Geom.GeomType.CYLINDER:
                     return "cylinder"
-                case Geom.GeomType.Box:
+                case Geom.GeomType.BOX:
                     return "box"
-                case Geom.GeomType.Mesh:
+                case Geom.GeomType.MESH:
                     return "mesh"
                 case Geom.GeomType.SDF:
                     return "sdf"
@@ -52,63 +52,64 @@ class Geom:
             self,
             name: str | None = None,
             class_: str | None = None,
-            type_: GeomType = GeomType.Sphere,
-            contype: int = 1,
-            conaffinity: int = 1,
-            condim: int = 3,
-            group: int = 0,
-            priority: int = 0,
-            size: tuple = (0.0, 0.0, 0.0),
+            type_: GeomType | None = GeomType.SPHERE,
+            contype: int | None = 1,
+            conaffinity: int | None = 1,
+            condim: int | None = 3,
+            group: int | None = 0,
+            priority: int | None = 0,
+            size: tuple | None = (0.0, 0.0, 0.0),
             material: str | None = None,
-            rgba: tuple[float, float, float, float] = (0.5, 0.5, 0.5, 1),
-            friction: tuple[float, float, float] = (1.0, 0.005, 0.0001),
+            rgba: tuple[float, float, float, float] | None = (0.5, 0.5, 0.5, 1),
+            friction: tuple[float, float, float] | None = (1.0, 0.005, 0.0001),
             mass: float | None = None,
-            density: float = 1000,
-            shellinertia: bool = False,
-            solmix: float = 1.0,
-            solref: tuple[float, float] = (0.02, 1.0),
-            solimp: tuple[float, float, float, float, float] = (0.9, 0.95, 0.001, 0.5, 2.0),
-            margin: float = 0.0,
-            gap: float = 0.0,
+            density: float | None = 1000,
+            shellinertia: bool | None = False,
+            solmix: float | None = 1.0,
+            solref: tuple[float, float] | None = (0.02, 1.0),
+            solimp: tuple[float, float, float, float, float] | None = (0.9, 0.95, 0.001, 0.5, 2.0),
+            margin: float | None = 0.0,
+            gap: float | None = 0.0,
             fromto: tuple[float, float, float, float, float, float] | None = None,
-            pos: tuple[float, float, float] = (0.0, 0.0, 0.0),
-            orientation: interface.Orientation = common.Orientation.Quaternion(1, 0, 0, 0),
+            pos: tuple[float, float, float] | None = (0.0, 0.0, 0.0),
+            orientation: interface.Orientation | None = common.Orientation.Quaternion(1, 0, 0, 0),
             hfield: str | None = None,
             mesh: str | None = None,
-            fitscale: float = 1.0,
-            fluidshape: FluidShape = FluidShape.none,
-            fluidcoef: tuple[float, float, float, float, float] = (0.5, 0.25, 1.5, 1.0, 1.0),
+            fitscale: float | None = 1.0,
+            fluidshape: FluidShape | None = FluidShape.none,
+            fluidcoef: tuple[float, float, float, float, float] | None = (0.5, 0.25, 1.5, 1.0, 1.0),
             user: list[float] | None = None
     ):
-        self.name = utils.Attribution("name", name)
-        self.class_ = utils.Attribution("class", class_)
-        self.type_ = utils.Attribution("type", utils.str_or_none(type_))
-        self.contype = utils.Attribution("contype", contype)
-        self.conaffinity = utils.Attribution("conaffinity", conaffinity)
-        self.condim = utils.Attribution("condim", condim)
-        self.group = utils.Attribution("group", group)
-        self.priority = utils.Attribution("priority", priority)
-        self.size = utils.Attribution("size", size)
-        self.material = utils.Attribution("material", material)
-        self.rgba = utils.Attribution("rgba", rgba)
-        self.friction = utils.Attribution("friction", friction)
-        self.mass = utils.Attribution("mass", mass)
-        self.density = utils.Attribution("density", density)
-        self.shellinertia = utils.Attribution("shellinertia", shellinertia)
-        self.solmix = utils.Attribution("solmix", solmix)
-        self.solref = utils.Attribution("solref", solref)
-        self.solimp = utils.Attribution("solimp", solimp)
-        self.margin = utils.Attribution("margin", margin)
-        self.gap = utils.Attribution("gap", gap)
-        self.fromto = utils.Attribution("fromto", fromto)
-        self.pos = utils.Attribution("pos", pos)
-        self.orientation = utils.Attribution(orientation.get_type(), utils.str_or_none(orientation))
-        self.hfield = utils.Attribution("hfield", hfield)
-        self.mesh = utils.Attribution("mesh", mesh)
-        self.fitscale = utils.Attribution("fitscale", fitscale)
-        self.fluidshape = utils.Attribution("fluidshape", utils.str_or_none(fluidshape))
-        self.fluidcoef = utils.Attribution("fluidcoef", fluidcoef)
-        self.user = utils.Attribution("user", user)
+        self.name = utils.Attribution("name", name, str)
+        self.class_ = utils.Attribution("class", class_, str)
+        self.type_ = utils.Attribution("type", type_, str, Geom.GeomType.SPHERE)
+        self.contype = utils.Attribution("contype", contype, int, 1)
+        self.conaffinity = utils.Attribution("conaffinity", conaffinity, int, 1)
+        self.condim = utils.Attribution("condim", condim, int, 3)
+        self.group = utils.Attribution("group", group, int, 0)
+        self.priority = utils.Attribution("priority", priority, int, 0)
+        self.size = utils.Attribution("size", size, float, (0.0, 0.0, 0.0))
+        self.material = utils.Attribution("material", material, str)
+        self.rgba = utils.Attribution("rgba", rgba, float, (0.5, 0.5, 0.5, 1))
+        self.friction = utils.Attribution("friction", friction, float, (1.0, 0.005, 0.0001))
+        self.mass = utils.Attribution("mass", mass, float)
+        self.density = utils.Attribution("density", density, float, 1000)
+        self.shellinertia = utils.Attribution("shellinertia", shellinertia, bool, False)
+        self.solmix = utils.Attribution("solmix", solmix, float, 1.0)
+        self.solref = utils.Attribution("solref", solref, float, (0.02, 1.0))
+        self.solimp = utils.Attribution("solimp", solimp, float, (0.9, 0.95, 0.001, 0.5, 2.0))
+        self.margin = utils.Attribution("margin", margin, float, 0.0)
+        self.gap = utils.Attribution("gap", gap, float, 0.0)
+        self.fromto = utils.Attribution("fromto", fromto, float)
+        self.pos = utils.Attribution("pos", pos, float, (0.0, 0.0, 0.0))
+        self.orientation = utils.Attribution(orientation.get_type(), orientation, str,
+                                             common.Orientation.Quaternion(1, 0, 0, 0))
+        self.hfield = utils.Attribution("hfield", hfield, str)
+        self.mesh = utils.Attribution("mesh", mesh, str)
+        self.fitscale = utils.Attribution("fitscale", fitscale, float)
+        self.fluidshape = utils.Attribution("fluidshape", fluidshape, str, Geom.FluidShape.none)
+        self.fluidcoef = utils.Attribution("fluidcoef", fluidcoef, float, (0.5, 0.25, 1.5, 1.0, 1.0))
+        self.user = utils.Attribution("user", user, float)
 
     def __str__(self) -> str:
         attributions = utils.arrange_attributions([
