@@ -78,12 +78,10 @@ class Compiler:
         self.children = []
 
     def add_child(self, child: LengthRange):
-        is_supported = False
         for t in Compiler.SUPPORTED_CHILDREN_TYPES:
-            is_supported |= type(child) is t
-        if not is_supported:
-            raise "Unsupported type is added."
-        self.children.append(child)
+            if type(child) is t:
+                self.children.append(child)
+        raise "Unsupported type is added."
 
     def __str__(self) -> str:
         attributions = utils.arrange_attributions([
