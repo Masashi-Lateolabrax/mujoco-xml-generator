@@ -5,26 +5,35 @@ import mujoco.viewer
 
 import mujoco_xml_generator as mjc_gen
 from mujoco_xml_generator import WorldBody, Body, body
+from mujoco_xml_generator import Visual, visual
 
 
 def gen_xml() -> str:
     generator = mjc_gen.Generator().add_children([
-
         WorldBody().add_children([
             body.Geom(
-                type_=body.Geom.GeomType.PLANE, size=(100, 100, 1)
+                type_=body.Geom.GeomType.PLANE, pos=(0, 0, 0), size=(10, 10, 1), rgba=(1, 1, 1, 1)
             ),
 
             Body(
-                pos=(0, 0, 100)
+                pos=(0, 0, 10)
             ).add_children([
                 body.Joint(type_=body.Joint.JointType.FREE),
                 body.Geom(type_=body.Geom.GeomType.SPHERE, size=(1,))
+            ]),
+
+            Body(
+                pos=(0.5, 0.5, 0.6)
+            ).add_children([
+                body.Joint(type_=body.Joint.JointType.FREE),
+                body.Geom(type_=body.Geom.GeomType.BOX, size=(0.5, 0.5, 0.5))
             ])
         ])
 
     ])
-    return generator.build()
+    xml = generator.build()
+    print(xml)
+    return xml
 
 
 def main():
@@ -32,6 +41,9 @@ def main():
     data = mujoco.MjData(model)
 
     with mujoco.viewer.launch_passive(model, data) as viewer:
+        viewer.cam.elevation = -10
+        viewer.cam.distance = 30
+
         while viewer.is_running():
             step_start = time.time()
 
