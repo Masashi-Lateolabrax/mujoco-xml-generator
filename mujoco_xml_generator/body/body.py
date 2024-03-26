@@ -46,6 +46,7 @@ class Body:
 
         return "\n".join([
             f"<body {attributions}>",
-            "\n".join([str(c) for c in self.children]),
+            "\t",
+            "\n\t".join([str(c) for c in self.children]),
             "</body>"
         ])
