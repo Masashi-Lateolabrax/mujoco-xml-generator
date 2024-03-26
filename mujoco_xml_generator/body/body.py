@@ -12,9 +12,9 @@ class Body:
             name: str | None = None,
             childclass: str | None = None,
             pos: tuple[float, float, float] | None = None,
-            orientation: interface.Orientation = common.Orientation.Quaternion(1, 0, 0, 0),
-            mocap: bool = False,
-            gravcomp: float = 0.0,
+            orientation: interface.Orientation | None = common.Orientation.Quaternion(1, 0, 0, 0),
+            mocap: bool | None = False,
+            gravcomp: float | None = 0.0,
             user: list[float] | None = None
     ):
         self.name = utils.Attribution("name", name)
@@ -26,6 +26,32 @@ class Body:
         self.user = utils.Attribution("user", user)
 
         self.children = []
+
+    def add_child(self, child):
+        if type(child) is Body:
+            self.children.append(child)
+            return self
+
+        for t in Body.SUPPORTED_CHILDREN_TYPES:
+            if type(child) is t:
+                self.children.append(child)
+                return self
+
+        raise "Unsupported type is added."
+
+    def __str__(self) -> str:
+        attributions = utils.arrange_attributions([
+            self.name,
+            self.childclass,
+            self.pos,
+            self.orientation,
+            self.mocap,
+            self.gravcomp,
+            self.user
+        ])
+
+        return utils.gen_xml("body", attributions, self.children)
+
 
     def add_child(self, child):
         for t in Body.SUPPORTED_CHILDREN_TYPES:
