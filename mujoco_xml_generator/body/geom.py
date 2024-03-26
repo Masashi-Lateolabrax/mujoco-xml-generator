@@ -1,4 +1,5 @@
-from mujoco_xml_generator import utils
+from mujoco_xml_generator import utils, interface
+from mujoco_xml_generator import common
 import enum
 
 
@@ -72,11 +73,7 @@ class Geom:
             gap: float = 0.0,
             fromto: tuple[float, float, float, float, float, float] | None = None,
             pos: tuple[float, float, float] = (0.0, 0.0, 0.0),
-            quat: tuple[float, float, float, float] = (1.0, 0, 0, 0),
-            axisangle: tuple[float, float, float, float] | None = None,
-            xyaxes: tuple[float, float, float] | None = None,
-            zaxis: tuple[float, float, float] | None = None,
-            euler: tuple[float, float, float] | None = None,
+            orientation: interface.Orientation = common.Orientation.Quaternion(1, 0, 0, 0),
             hfield: str | None = None,
             mesh: str | None = None,
             fitscale: float = 1.0,
@@ -106,11 +103,7 @@ class Geom:
         self.gap = utils.Attribution("gap", gap)
         self.fromto = utils.Attribution("fromto", fromto)
         self.pos = utils.Attribution("pos", pos)
-        self.quat = utils.Attribution("quat", quat)
-        self.axisangle = utils.Attribution("axisangle", axisangle)
-        self.xyaxes = utils.Attribution("xyaxes", xyaxes)
-        self.zaxis = utils.Attribution("zaxis", zaxis)
-        self.euler = utils.Attribution("euler", euler)
+        self.orientation = utils.Attribution(orientation.get_type(), utils.str_or_none(orientation))
         self.hfield = utils.Attribution("hfield", hfield)
         self.mesh = utils.Attribution("mesh", mesh)
         self.fitscale = utils.Attribution("fitscale", fitscale)
@@ -142,11 +135,7 @@ class Geom:
             self.gap,
             self.fromto,
             self.pos,
-            self.quat,
-            self.axisangle,
-            self.xyaxes,
-            self.zaxis,
-            self.euler,
+            self.orientation,
             self.hfield,
             self.mesh,
             self.fitscale,
