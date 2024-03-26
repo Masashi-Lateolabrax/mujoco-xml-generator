@@ -1,4 +1,27 @@
+import abc
 from mujoco_xml_generator import interface
+
+
+class MuJoCoElement(metaclass=abc.ABCMeta):
+    @abc.abstractmethod
+    def get_element_name(self):
+        raise NotImplemented
+
+    @abc.abstractmethod
+    def get_attributions(self):
+        raise NotImplemented
+
+    @abc.abstractmethod
+    def get_children(self):
+        raise NotImplemented
+
+    def to_xml(self, prefix="") -> str:
+        return gen_xml(
+            self.get_element_name(),
+            arrange_attributions(self.get_attributions()),
+            self.get_children(),
+            prefix
+        )
 
 
 def get_type_or_none(x: interface.GetTypeInterface) -> str | None:
@@ -47,8 +70,15 @@ def arrange_attributions(attributions: list[Attribution]) -> str:
     return " ".join(res)
 
 
-def gen_xml(element_name: str, attributions: str, children: list):
-    xml = [f"<{element_name}{attributions}>", f"</{element_name}>"]
-    if len(children) > 0:
-        xml.insert(1, "\n".join(["\t" + str(c) for c in children]))
-    return "\n".join(xml)
+def gen_xml(element_name: str, attributions: str, children: list[MuJoCoElement] | None, prefix: str = ""):
+    if children is None:
+        return f"{prefix}<{element_name}{attributions}/>"
+    elif len(children) == 0:
+        return f"{prefix}<{element_name}{attributions}></{element_name}>"
+    else:
+        xml = [
+            f"{prefix}<{element_name}{attributions}>",
+            "\n".join([c.to_xml(prefix + "\t") for c in children]),
+            f"{prefix}</{element_name}>"
+        ]
+        return "\n".join(xml)

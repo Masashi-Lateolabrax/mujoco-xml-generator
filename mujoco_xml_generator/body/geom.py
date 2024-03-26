@@ -2,7 +2,7 @@ import enum
 from mujoco_xml_generator import common, interface, _utils as utils
 
 
-class Geom:
+class Geom(utils.MuJoCoElement):
     class GeomType(enum.Enum):
         PLANE = 0
         H_FIELD = 1
@@ -111,8 +111,14 @@ class Geom:
         self.fluidcoef = utils.Attribution("fluidcoef", fluidcoef, float, (0.5, 0.25, 1.5, 1.0, 1.0))
         self.user = utils.Attribution("user", user, float)
 
-    def __str__(self) -> str:
-        attributions = utils.arrange_attributions([
+    def get_element_name(self):
+        return "geom"
+
+    def get_children(self):
+        return None
+
+    def get_attributions(self):
+        return [
             self.name,
             self.class_,
             self.type_,
@@ -142,6 +148,7 @@ class Geom:
             self.fluidshape,
             self.fluidcoef,
             self.user
-        ])
+        ]
 
-        return f"<geom{attributions}/>"
+    def __str__(self) -> str:
+        return f"<geom{utils.arrange_attributions(self.get_attributions())}/>"

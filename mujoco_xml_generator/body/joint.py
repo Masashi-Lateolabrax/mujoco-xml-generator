@@ -1,8 +1,8 @@
 import enum
-from mujoco_xml_generator import common, _utils as utils
+from mujoco_xml_generator import common, interface, _utils as utils
 
 
-class Joint:
+class Joint(utils.MuJoCoElement):
     class JointType(enum.Enum):
         FREE = 0
         BALL = 1
@@ -72,8 +72,11 @@ class Joint:
         self.frictionloss = utils.Attribution("frictionloss", frictionloss, float, 0.0)
         self.user = utils.Attribution("user", user, float)
 
-    def __str__(self) -> str:
-        attributions = utils.arrange_attributions([
+    def get_element_name(self):
+        return "joint"
+
+    def get_attributions(self):
+        return [
             self.name,
             self.class_,
             self.type_,
@@ -97,6 +100,10 @@ class Joint:
             self.damping,
             self.frictionloss,
             self.user,
-        ])
+        ]
 
-        return f"<joint{attributions}/>"
+    def __str__(self) -> str:
+        return f"<joint{utils.arrange_attributions(self.get_attributions())}/>"
+
+    def get_children(self):
+        return None

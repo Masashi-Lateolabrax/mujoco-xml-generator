@@ -10,11 +10,7 @@ def test_to_string():
         gravcomp=1.0,
         user=None
     )
-    answer = "\n".join([
-        "<body name=\"MuJoCo Model\" pos=\"1.0 2.0 3.0\" axisangle=\"1.0 0.0 0.0 1.5\" gravcomp=\"1.0\">",
-        "</body>"
-    ])
-    assert str(sample) == answer
+    assert sample.to_xml() == "<body name=\"MuJoCo Model\" pos=\"1.0 2.0 3.0\" axisangle=\"1.0 0.0 0.0 1.5\" gravcomp=\"1.0\"></body>"
 
 
 def test_to_string_with_none():
@@ -24,13 +20,9 @@ def test_to_string_with_none():
         mocap=None,
         gravcomp=None
     )
-    answer = "\n".join([
-        "<body name=\"MuJoCo Model\">",
-        "</body>"
-    ])
-    assert str(sample) == answer
+    assert sample.to_xml() == "<body name=\"MuJoCo Model\"></body>"
 
 
 def test_to_string_for_world():
     sample = WorldBody()
-    assert str(sample) == "<worldbody>\n</worldbody>"
+    assert sample.to_xml() == "<worldbody></worldbody>"

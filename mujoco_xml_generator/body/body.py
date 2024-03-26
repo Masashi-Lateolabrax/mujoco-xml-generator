@@ -4,7 +4,7 @@ from .geom import Geom
 from .joint import Joint
 
 
-class Body:
+class Body(utils.MuJoCoElement):
     SUPPORTED_CHILDREN_TYPES = [Geom, Joint]
 
     def __init__(
@@ -28,15 +28,11 @@ class Body:
 
         self.children = []
 
-    def add_children(self, children: list):
-        for c in children:
-            if type(c) is not Body and type(c) not in Body.SUPPORTED_CHILDREN_TYPES:
-                raise "Unsupported type is added."
-            self.children.append(c)
-        return self
+    def get_element_name(self):
+        return "body"
 
-    def __str__(self) -> str:
-        attributions = utils.arrange_attributions([
+    def get_attributions(self):
+        return [
             self.name,
             self.childclass,
             self.pos,
@@ -44,16 +40,33 @@ class Body:
             self.mocap,
             self.gravcomp,
             self.user
-        ])
+        ]
 
-        return utils.gen_xml("body", attributions, self.children)
+    def add_children(self, children: list):
+        for c in children:
+            if type(c) is not Body and type(c) not in Body.SUPPORTED_CHILDREN_TYPES:
+                raise "Unsupported type is added."
+            self.children.append(c)
+        return self
+
+    def get_children(self):
+        return self.children
+
+    def __str__(self) -> str:
+        return f"<Body{utils.arrange_attributions(self.get_attributions())}>"
 
 
-class WorldBody:
+class WorldBody(utils.MuJoCoElement):
     SUPPORTED_CHILDREN_TYPES = [Body, Geom]
 
     def __init__(self):
         self.children = []
+
+    def get_element_name(self):
+        return "worldbody"
+
+    def get_attributions(self):
+        return []
 
     def add_children(self, children: list):
         for c in children:
@@ -62,5 +75,8 @@ class WorldBody:
             self.children.append(c)
         return self
 
+    def get_children(self):
+        return self.children
+
     def __str__(self) -> str:
-        return utils.gen_xml("worldbody", "", self.children)
+        return f"<WorldBody>"

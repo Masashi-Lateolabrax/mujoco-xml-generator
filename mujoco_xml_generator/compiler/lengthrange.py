@@ -2,7 +2,7 @@ import enum
 from mujoco_xml_generator import _utils as utils
 
 
-class LengthRange:
+class LengthRange(utils.MuJoCoElement):
     class Mode(enum.Enum):
         NoneMode = 0
         Muscle = 1
@@ -45,8 +45,11 @@ class LengthRange:
         self.interval = utils.Attribution("interval", interval, float, 2.0)
         self.tolrange = utils.Attribution("tolrange", tolrange, float, 0.05)
 
-    def __str__(self) -> str:
-        attributions = utils.arrange_attributions([
+    def get_element_name(self):
+        return "lengthrange"
+
+    def get_attributions(self):
+        return [
             self.mode,
             self.useexisting,
             self.uselimit,
@@ -57,5 +60,10 @@ class LengthRange:
             self.inttotal,
             self.interval,
             self.tolrange
-        ])
-        return f"<lengthrange{attributions}/>"
+        ]
+
+    def get_children(self):
+        return None
+
+    def __str__(self) -> str:
+        return f"<lengthrange{utils.arrange_attributions(self.get_attributions())}/>"

@@ -4,7 +4,7 @@ from mujoco_xml_generator import common, _utils as utils
 from mujoco_xml_generator.compiler import LengthRange
 
 
-class Compiler:
+class Compiler(utils.MuJoCoElement):
     SUPPORTED_CHILDREN_TYPES = [LengthRange]
 
     class LocalOrGlobal(enum.Enum):
@@ -77,15 +77,11 @@ class Compiler:
 
         self.children = []
 
-    def add_children(self, children: list):
-        for c in children:
-            if type(c) not in Compiler.SUPPORTED_CHILDREN_TYPES:
-                raise "Unsupported type is added."
-            self.children.append(c)
-        return self
+    def get_element_name(self):
+        return "compiler"
 
-    def __str__(self) -> str:
-        attributions = utils.arrange_attributions([
+    def get_attributions(self):
+        return [
             self.autolimits,
             self.boundmass,
             self.boundinertia,
@@ -106,10 +102,17 @@ class Compiler:
             self.inertiafromgeom,
             self.exactmeshinertia,
             self.inertiagrouprange
-        ])
-        return "\n".join([
-            f"<compiler {attributions}>",
-            "\t",
-            "\n\t".join([str(c) for c in self.children]),
-            "</compiler>"
-        ])
+        ]
+
+    def add_children(self, children: list):
+        for c in children:
+            if type(c) not in Compiler.SUPPORTED_CHILDREN_TYPES:
+                raise "Unsupported type is added."
+            self.children.append(c)
+        return self
+
+    def get_children(self):
+        return self.children
+
+    def __str__(self) -> str:
+        return f"f<compiler{utils.arrange_attributions(self.get_attributions())}>"
