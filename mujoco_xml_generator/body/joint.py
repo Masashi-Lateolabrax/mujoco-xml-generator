@@ -55,7 +55,8 @@ class Joint:
         self.axis = utils.Attribution("axis", axis, float, (0.0, 0.0, 0.0))
         self.springdamper = utils.Attribution("springdamper", springdamper, float, (0.0, 0.0))
         self.limited = utils.Attribution("limited", limited, str, common.BoolOrAuto.AUTO)
-        self.actuatorfrclimited = utils.Attribution("actuatorfrclimited", actuatorfrclimited, common.BoolOrAuto.AUTO)
+        self.actuatorfrclimited = utils.Attribution("actuatorfrclimited", actuatorfrclimited, str,
+                                                    common.BoolOrAuto.AUTO)
         self.solreflimit = utils.Attribution("solreflimit", solreflimit, float)
         self.solimplimit = utils.Attribution("solimplimit", solimplimit, float)
         self.solreffriction = utils.Attribution("solreffriction", solreffriction, float)
