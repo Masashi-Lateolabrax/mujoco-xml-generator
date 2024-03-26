@@ -4,20 +4,20 @@ from mujoco_xml_generator import common, _utils as utils
 
 class Joint:
     class JointType(enum.Enum):
-        Free = 0
-        Ball = 1
-        Slide = 2
-        Hinge = 4
+        FREE = 0
+        BALL = 1
+        SLIDE = 2
+        HINGE = 4
 
         def __str__(self) -> str:
             match self:
-                case Joint.JointType.Free:
+                case Joint.JointType.FREE:
                     return "free"
-                case Joint.JointType.Ball:
+                case Joint.JointType.BALL:
                     return "ball"
-                case Joint.JointType.Slide:
+                case Joint.JointType.SLIDE:
                     return "slide"
-                case Joint.JointType.Hinge:
+                case Joint.JointType.HINGE:
                     return "hinge"
             raise "Unexpected error occurred."
 
@@ -25,51 +25,51 @@ class Joint:
             self,
             name: str | None = None,
             class_: str | None = None,
-            type_: JointType = JointType.Hinge,
-            group: int = 0,
-            pos: tuple[float, float, float] = (0.0, 0.0, 0.0),
-            axis: tuple[float, float, float] = (0.0, 0.0, 0.0),
-            springdamper: tuple[float, float] = (0.0, 0.0),
-            limited: common.BoolOrAuto = common.BoolOrAuto.AUTO,
-            actuatorfrclimited: common.BoolOrAuto = common.BoolOrAuto.AUTO,
+            type_: JointType | None = JointType.HINGE,
+            group: int | None = 0,
+            pos: tuple[float, float, float] | None = (0.0, 0.0, 0.0),
+            axis: tuple[float, float, float] | None = (0.0, 0.0, 0.0),
+            springdamper: tuple[float, float] | None = (0.0, 0.0),
+            limited: common.BoolOrAuto | None = common.BoolOrAuto.AUTO,
+            actuatorfrclimited: common.BoolOrAuto | None = common.BoolOrAuto.AUTO,
             solreflimit: tuple[float, float] | None = None,
             solimplimit: tuple[float, float, float, float, float] | None = None,
             solreffriction: tuple[float, float] | None = None,
             solimpfriction: tuple[float, float, float, float, float] | None = None,
-            stiffness: float = 0.0,
-            range_: tuple[float, float] = (0.0, 0.0),
-            actuatorfrcrange: tuple[float, float] = (0.0, 0.0),
-            margin: float = 0.0,
-            ref: float = 0.0,
-            springref: float = 0.0,
-            armature: float = 0.0,
-            damping: float = 0.0,
-            frictionloss: float = 0.0,
+            stiffness: float | None = 0.0,
+            range_: tuple[float, float] | None = (0.0, 0.0),
+            actuatorfrcrange: tuple[float, float] | None = (0.0, 0.0),
+            margin: float | None = 0.0,
+            ref: float | None = 0.0,
+            springref: float | None = 0.0,
+            armature: float | None = 0.0,
+            damping: float | None = 0.0,
+            frictionloss: float | None = 0.0,
             user: list[float] | None = None
     ):
-        self.name = utils.Attribution("name", name)
-        self.class_ = utils.Attribution("class", class_)
-        self.type_ = utils.Attribution("type", utils.str_or_none(type_))
-        self.group = utils.Attribution("group", group)
-        self.pos = utils.Attribution("pos", pos)
-        self.axis = utils.Attribution("axis", axis)
-        self.springdamper = utils.Attribution("springdamper", springdamper)
-        self.limited = utils.Attribution("limited", utils.str_or_none(limited))
-        self.actuatorfrclimited = utils.Attribution("actuatorfrclimited", utils.str_or_none(actuatorfrclimited))
-        self.solreflimit = utils.Attribution("solreflimit", solreflimit)
-        self.solimplimit = utils.Attribution("solimplimit", solimplimit)
-        self.solreffriction = utils.Attribution("solreffriction", solreffriction)
-        self.solimpfriction = utils.Attribution("solimpfriction", solimpfriction)
-        self.stiffness = utils.Attribution("stiffness", stiffness)
-        self.range_ = utils.Attribution("range_", range_)
-        self.actuatorfrcrange = utils.Attribution("actuatorfrcrange", actuatorfrcrange)
-        self.margin = utils.Attribution("margin", margin)
-        self.ref = utils.Attribution("ref", ref)
-        self.springref = utils.Attribution("springref", springref)
-        self.armature = utils.Attribution("armature", armature)
-        self.damping = utils.Attribution("damping", damping)
-        self.frictionloss = utils.Attribution("frictionloss", frictionloss)
-        self.user = utils.Attribution("user", user)
+        self.name = utils.Attribution("name", name, str)
+        self.class_ = utils.Attribution("class", class_, str)
+        self.type_ = utils.Attribution("type", type_, str, Joint.JointType.HINGE)
+        self.group = utils.Attribution("group", group, int, 0)
+        self.pos = utils.Attribution("pos", pos, float, (0.0, 0.0, 0.0))
+        self.axis = utils.Attribution("axis", axis, float, (0.0, 0.0, 0.0))
+        self.springdamper = utils.Attribution("springdamper", springdamper, float, (0.0, 0.0))
+        self.limited = utils.Attribution("limited", limited, str, common.BoolOrAuto.AUTO)
+        self.actuatorfrclimited = utils.Attribution("actuatorfrclimited", actuatorfrclimited, common.BoolOrAuto.AUTO)
+        self.solreflimit = utils.Attribution("solreflimit", solreflimit, float)
+        self.solimplimit = utils.Attribution("solimplimit", solimplimit, float)
+        self.solreffriction = utils.Attribution("solreffriction", solreffriction, float)
+        self.solimpfriction = utils.Attribution("solimpfriction", solimpfriction, float)
+        self.stiffness = utils.Attribution("stiffness", stiffness, float, 0.0)
+        self.range_ = utils.Attribution("range_", range_, float, (0.0, 0.0))
+        self.actuatorfrcrange = utils.Attribution("actuatorfrcrange", actuatorfrcrange, float, (0.0, 0.0))
+        self.margin = utils.Attribution("margin", margin, float, 0.0)
+        self.ref = utils.Attribution("ref", ref, float, 0.0)
+        self.springref = utils.Attribution("springref", springref, float, 0.0)
+        self.armature = utils.Attribution("armature", armature, float, 0.0)
+        self.damping = utils.Attribution("damping", damping, float, 0.0)
+        self.frictionloss = utils.Attribution("frictionloss", frictionloss, float, 0.0)
+        self.user = utils.Attribution("user", user, float)
 
     def __str__(self) -> str:
         attributions = utils.arrange_attributions([
@@ -98,4 +98,4 @@ class Joint:
             self.user,
         ])
 
-        return f"<joint {attributions} />"
+        return f"<joint{attributions}/>"
