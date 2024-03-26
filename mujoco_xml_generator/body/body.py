@@ -27,17 +27,11 @@ class Body:
 
         self.children = []
 
-    def add_child(self, child):
-        if type(child) is Body:
-            self.children.append(child)
-            return self
-
-        for t in Body.SUPPORTED_CHILDREN_TYPES:
-            if type(child) is t:
-                self.children.append(child)
-                return self
-
-        raise "Unsupported type is added."
+    def add_children(self, children: list):
+        for c in children:
+            if type(c) is not Body and type(c) not in Body.SUPPORTED_CHILDREN_TYPES:
+                raise "Unsupported type is added."
+            self.children.append(c)
 
     def __str__(self) -> str:
         attributions = utils.arrange_attributions([
@@ -59,12 +53,11 @@ class WorldBody:
     def __init__(self):
         self.children = []
 
-    def add_child(self, child):
-        for t in WorldBody.SUPPORTED_CHILDREN_TYPES:
-            if type(child) is t:
-                self.children.append(child)
-                return self
-        raise "Unsupported type is added."
+    def add_children(self, children: list):
+        for c in children:
+            if type(c) not in WorldBody.SUPPORTED_CHILDREN_TYPES:
+                raise "Unsupported type is added."
+            self.children.append(c)
 
     def __str__(self) -> str:
         return utils.gen_xml("worldbody", "", self.children)
