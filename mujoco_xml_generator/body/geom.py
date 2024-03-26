@@ -106,7 +106,7 @@ class Geom:
                                              common.Orientation.Quaternion(1, 0, 0, 0))
         self.hfield = utils.Attribution("hfield", hfield, str)
         self.mesh = utils.Attribution("mesh", mesh, str)
-        self.fitscale = utils.Attribution("fitscale", fitscale, float)
+        self.fitscale = utils.Attribution("fitscale", fitscale, float, 1.0)
         self.fluidshape = utils.Attribution("fluidshape", fluidshape, str, Geom.FluidShape.none)
         self.fluidcoef = utils.Attribution("fluidcoef", fluidcoef, float, (0.5, 0.25, 1.5, 1.0, 1.0))
         self.user = utils.Attribution("user", user, float)
@@ -144,4 +144,4 @@ class Geom:
             self.user
         ])
 
-        return f"<geom {attributions} />"
+        return f"<geom{attributions}/>"
