@@ -88,3 +88,25 @@ class Orientation:
 
         def get_type(self) -> str:
             return "zaxis"
+
+
+class Weight:
+    class Mass(interface.Weight):
+        def __init__(self, mass: float):
+            self.value = mass
+
+        def __str__(self) -> str:
+            return str(float(self.value))
+
+        def get_type(self) -> str:
+            return "mass"
+
+    class Density(interface.Weight):
+        def __init__(self, density: float):
+            self.value = density
+
+        def __str__(self) -> str:
+            return str(float(self.value))
+
+        def get_type(self) -> str:
+            return "density"
