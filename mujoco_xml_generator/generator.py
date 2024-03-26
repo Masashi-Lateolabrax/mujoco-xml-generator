@@ -6,7 +6,7 @@ from mujoco_xml_generator import WorldBody, Body
 class Generator:
     SUPPORTED_CHILDREN_TYPES = [WorldBody, Body]
 
-    def __init__(self, model: str = "MuJoCo Model"):
+    def __init__(self, model: str | None = "MuJoCo Model"):
         self.model = utils.Attribution("model", model)
 
         self.children = []
