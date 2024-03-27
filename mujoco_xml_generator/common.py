@@ -39,12 +39,12 @@ class GeomType(enum.Enum):
 
 
 class FluidShape(enum.Enum):
-    none = 0
+    NONE = 0
     ellipsoid = 1
 
     def __str__(self) -> str:
         match self:
-            case FluidShape.none:
+            case FluidShape.NONE:
                 return "none"
             case FluidShape.ellipsoid:
                 return "ellipsoid"

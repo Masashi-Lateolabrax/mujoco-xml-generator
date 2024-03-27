@@ -30,7 +30,7 @@ class Geom(utils.MuJoCoElement):
             hfield: str | None = None,
             mesh: str | None = None,
             fitscale: float | None = 1.0,
-            fluidshape: common.FluidShape | None = common.FluidShape.none,
+            fluidshape: common.FluidShape | None = common.FluidShape.NONE,
             fluidcoef: tuple[float, float, float, float, float] | None = (0.5, 0.25, 1.5, 1.0, 1.0),
             user: list[float] | None = None
     ):
@@ -59,7 +59,7 @@ class Geom(utils.MuJoCoElement):
         self.hfield = utils.Attribution("hfield", hfield, str)
         self.mesh = utils.Attribution("mesh", mesh, str)
         self.fitscale = utils.Attribution("fitscale", fitscale, float, 1.0)
-        self.fluidshape = utils.Attribution("fluidshape", fluidshape, str, common.FluidShape.none)
+        self.fluidshape = utils.Attribution("fluidshape", fluidshape, str, common.FluidShape.NONE)
         self.fluidcoef = utils.Attribution("fluidcoef", fluidcoef, float, (0.5, 0.25, 1.5, 1.0, 1.0))
         self.user = utils.Attribution("user", user, float)
 

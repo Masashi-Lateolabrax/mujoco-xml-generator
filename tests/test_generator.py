@@ -1,3 +1,4 @@
+from mujoco_xml_generator import common
 from mujoco_xml_generator import Generator
 
 
@@ -17,7 +18,7 @@ def test_to_gen_xml():
 
     generator = Generator().add_children([
         WorldBody().add_children([
-            body.Geom(type_=body.Geom.GeomType.PLANE),
+            body.Geom(type_=common.GeomType.PLANE),
             Body().add_children([
                 body.Joint(),
                 body.Geom()

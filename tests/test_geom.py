@@ -11,7 +11,7 @@ def test_to_string():
 def test_to_string_with_none():
     sample = Geom(
         name="geom",
-        type_=Geom.GeomType.PLANE,
+        type_=common.GeomType.PLANE,
         contype=1,
         condim=2,
         priority=0,

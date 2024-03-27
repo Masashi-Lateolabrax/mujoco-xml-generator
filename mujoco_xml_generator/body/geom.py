@@ -3,56 +3,11 @@ from mujoco_xml_generator import common, interface, _utils as utils
 
 
 class Geom(utils.MuJoCoElement):
-    class GeomType(enum.Enum):
-        PLANE = 0
-        H_FIELD = 1
-        SPHERE = 2
-        CAPSULE = 3
-        ELLIPSOID = 4
-        CYLINDER = 5
-        BOX = 6
-        MESH = 7
-        SDF = 8
-
-        def __str__(self) -> str:
-            match self:
-                case Geom.GeomType.PLANE:
-                    return "plane"
-                case Geom.GeomType.H_FIELD:
-                    return "hfield"
-                case Geom.GeomType.SPHERE:
-                    return "sphere"
-                case Geom.GeomType.CAPSULE:
-                    return "capsule"
-                case Geom.GeomType.ELLIPSOID:
-                    return "ellipsoid"
-                case Geom.GeomType.CYLINDER:
-                    return "cylinder"
-                case Geom.GeomType.BOX:
-                    return "box"
-                case Geom.GeomType.MESH:
-                    return "mesh"
-                case Geom.GeomType.SDF:
-                    return "sdf"
-            raise "Unexpected error occurred."
-
-    class FluidShape(enum.Enum):
-        none = 0
-        ellipsoid = 1
-
-        def __str__(self) -> str:
-            match self:
-                case Geom.FluidShape.none:
-                    return "none"
-                case Geom.FluidShape.ellipsoid:
-                    return "ellipsoid"
-            raise "Unexpected error occurred."
-
     def __init__(
             self,
             name: str | None = None,
             class_: str | None = None,
-            type_: GeomType | None = GeomType.SPHERE,
+            type_: common.GeomType | None = common.GeomType.SPHERE,
             contype: int | None = 1,
             conaffinity: int | None = 1,
             condim: int | None = 3,
@@ -76,13 +31,13 @@ class Geom(utils.MuJoCoElement):
             hfield: str | None = None,
             mesh: str | None = None,
             fitscale: float | None = 1.0,
-            fluidshape: FluidShape | None = FluidShape.none,
+            fluidshape: common.FluidShape | None = common.FluidShape.NONE,
             fluidcoef: tuple[float, float, float, float, float] | None = (0.5, 0.25, 1.5, 1.0, 1.0),
             user: list[float] | None = None
     ):
         self.name = utils.Attribution("name", name, str)
         self.class_ = utils.Attribution("class", class_, str)
-        self.type_ = utils.Attribution("type", type_, str, Geom.GeomType.SPHERE)
+        self.type_ = utils.Attribution("type", type_, str, common.GeomType.SPHERE)
         self.contype = utils.Attribution("contype", contype, int, 1)
         self.conaffinity = utils.Attribution("conaffinity", conaffinity, int, 1)
         self.condim = utils.Attribution("condim", condim, int, 3)
@@ -107,7 +62,7 @@ class Geom(utils.MuJoCoElement):
         self.hfield = utils.Attribution("hfield", hfield, str)
         self.mesh = utils.Attribution("mesh", mesh, str)
         self.fitscale = utils.Attribution("fitscale", fitscale, float, 1.0)
-        self.fluidshape = utils.Attribution("fluidshape", fluidshape, str, Geom.FluidShape.none)
+        self.fluidshape = utils.Attribution("fluidshape", fluidshape, str, common.FluidShape.NONE)
         self.fluidcoef = utils.Attribution("fluidcoef", fluidcoef, float, (0.5, 0.25, 1.5, 1.0, 1.0))
         self.user = utils.Attribution("user", user, float)
 
