@@ -2,10 +2,11 @@ from mujoco_xml_generator import common, interface, _utils as utils
 
 from .geom import Geom
 from .joint import Joint
+from .camera import Camera
 
 
 class Body(utils.MuJoCoElement):
-    SUPPORTED_CHILDREN_TYPES = [Geom, Joint]
+    SUPPORTED_CHILDREN_TYPES = [Geom, Joint, Camera]
 
     def __init__(
             self,
