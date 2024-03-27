@@ -31,7 +31,7 @@ class Camera(utils.MuJoCoElement):
         self.sensorsize = utils.Attribution("sensorsize", sensorsize, float, (0.0, 0.0))
         self.ipd = utils.Attribution("ipd", ipd, float, 0.068, )
         self.pos = utils.Attribution("pos", pos, float, (0.0, 0.0, 0.0))
-        self.orientation = utils.Attribution("orientation", orientation, str,
+        self.orientation = utils.Attribution(utils.get_type_or_none(orientation), orientation, str,
                                              common.Orientation.Quaternion(1, 0, 0, 0))
         self.user = utils.Attribution("user", user, float)
 
