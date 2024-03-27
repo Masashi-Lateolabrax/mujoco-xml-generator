@@ -1,4 +1,4 @@
-from mujoco_xml_generator import common, _utils as utils
+from mujoco_xml_generator import common, interface, _utils as utils
 
 
 class Camera(utils.MuJoCoElement):
@@ -16,7 +16,7 @@ class Camera(utils.MuJoCoElement):
             sensorsize: tuple[float, float] | None = (0.0, 0.0),
             ipd: float | None = 0.068,
             pos: tuple[float, float, float] | None = (0.0, 0.0, 0.0),
-            orientation: common.Orientation | None = common.Orientation.Quaternion(1, 0, 0, 0),
+            orientation: interface.Orientation | None = common.Orientation.Quaternion(1, 0, 0, 0),
             user: list[float] | None = None
     ):
         self.name = utils.Attribution("name", name, str)
