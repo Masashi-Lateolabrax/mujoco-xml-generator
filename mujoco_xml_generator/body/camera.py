@@ -25,7 +25,7 @@ class Camera(utils.MuJoCoElement):
         self.mode = utils.Attribution("mode", mode, str, common.CameraMode.FIXED)
         self.target = utils.Attribution("target", target, str)
         self.fovy = utils.Attribution("fovy", fovy, float, 45.0)
-        self.resolution = utils.Attribution("resolution", resolution, int, (1, 1))
+        self.resolution = utils.Attribution("resolution", resolution, int)
         self.focal = utils.Attribution("focal", focal, float, (0.0, 0.0))
         self.focalpixel = utils.Attribution("focalpixel", focalpixel, int, (0, 0))
         self.principal = utils.Attribution("principal", principal, int, (0, 0))
