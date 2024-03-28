@@ -8,6 +8,7 @@ class Camera(utils.MuJoCoElement):
             class_: str | None = None,
             mode: common.CameraMode | None = common.CameraMode.FIXED,
             target: str | None = None,
+            fovy: float | None = 45.0,
             resolution: tuple[int, int] | None = (1, 1),
             focal: tuple[float, float] | None = (0.0, 0.0),
             focalpixel: tuple[int, int] | None = (0, 0),
@@ -23,6 +24,7 @@ class Camera(utils.MuJoCoElement):
         self.class_ = utils.Attribution("class", class_, str)
         self.mode = utils.Attribution("mode", mode, str, common.CameraMode.FIXED)
         self.target = utils.Attribution("target", target, str)
+        self.fovy = utils.Attribution("fovy", fovy, float, 45.0)
         self.resolution = utils.Attribution("resolution", resolution, int, (1, 1))
         self.focal = utils.Attribution("focal", focal, float, (0.0, 0.0))
         self.focalpixel = utils.Attribution("focalpixel", focalpixel, int, (0, 0))
@@ -44,6 +46,7 @@ class Camera(utils.MuJoCoElement):
             self.class_,
             self.mode,
             self.target,
+            self.fovy,
             self.resolution,
             self.focal,
             self.focalpixel,
