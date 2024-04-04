@@ -51,7 +51,7 @@ class FluidShape(enum.Enum):
         raise "Unexpected error occurred."
 
 
-class CameraMode(enum.Enum):
+class TrackMode(enum.Enum):
     FIXED = 0
     TRACK = 1
     TRACKCOM = 2
@@ -60,15 +60,15 @@ class CameraMode(enum.Enum):
 
     def __str__(self):
         match self:
-            case CameraMode.FIXED:
+            case TrackMode.FIXED:
                 return "fixed"
-            case CameraMode.TRACK:
+            case TrackMode.TRACK:
                 return "track"
-            case CameraMode.TRACKCOM:
+            case TrackMode.TRACKCOM:
                 return "trackcom"
-            case CameraMode.TARGETBODY:
+            case TrackMode.TARGETBODY:
                 return "targetbody"
-            case CameraMode.TARGETBODYCOM:
+            case TrackMode.TARGETBODYCOM:
                 return "targetbodycom"
         raise "Unexpected error occurred."
 
