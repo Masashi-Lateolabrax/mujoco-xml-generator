@@ -3,10 +3,11 @@ from mujoco_xml_generator import common, interface, _utils as utils
 from .geom import Geom
 from .joint import Joint
 from .camera import Camera
+from .light import Light
 
 
 class Body(utils.MuJoCoElement):
-    SUPPORTED_CHILDREN_TYPES = [Geom, Joint, Camera]
+    SUPPORTED_CHILDREN_TYPES = [Geom, Joint, Camera, Light]
 
     def __init__(
             self,
@@ -58,7 +59,7 @@ class Body(utils.MuJoCoElement):
 
 
 class WorldBody(utils.MuJoCoElement):
-    SUPPORTED_CHILDREN_TYPES = [Body, Geom]
+    SUPPORTED_CHILDREN_TYPES = [Body, Geom, Light]
 
     def __init__(self):
         self.children = []
