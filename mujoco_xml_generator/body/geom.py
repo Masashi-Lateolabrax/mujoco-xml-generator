@@ -1,4 +1,3 @@
-import enum
 from mujoco_xml_generator import common, interface, _utils as utils
 
 
