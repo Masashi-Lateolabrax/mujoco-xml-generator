@@ -89,6 +89,70 @@ class BoolOrAuto(enum.Enum):
         raise "Unexpected error occurred."
 
 
+class IntegratorType(enum.Enum):
+    EULER = 0,
+    RK4 = 1,
+    IMPLICIT = 2,
+    IMPLICITFACT = 3
+
+    def __str__(self) -> str:
+        match self:
+            case IntegratorType.EULER:
+                return "euler"
+            case IntegratorType.RK4:
+                return "RK4"
+            case IntegratorType.IMPLICIT:
+                return "implicit"
+            case IntegratorType.IMPLICITFACT:
+                return "implicitfast"
+        raise "Unexpected error occurred."
+
+
+class ConeType(enum.Enum):
+    PYRAMIDAL = 0,
+    ELLIPTIC = 1,
+
+    def __str__(self) -> str:
+        match self:
+            case ConeType.PYRAMIDAL:
+                return "pyramidal"
+            case ConeType.ELLIPTIC:
+                return "elliptic"
+        raise "Unexpected error occurred."
+
+
+class JacobianType(enum.Enum):
+    DENSE = 0,
+    SPARSE = 1,
+    AUTO = 2,
+
+    def __str__(self) -> str:
+        match self:
+            case JacobianType.DENSE:
+                return "dense"
+            case JacobianType.SPARSE:
+                return "sparse"
+            case JacobianType.AUTO:
+                return "auto"
+        raise "Unexpected error occurred."
+
+
+class SolverType(enum.Enum):
+    PGS = 0,
+    CG = 1,
+    NEWTON = 2,
+
+    def __str__(self) -> str:
+        match self:
+            case SolverType.PGS:
+                return "PGS"
+            case SolverType.CG:
+                return "CG"
+            case SolverType.NEWTON:
+                return "Newton"
+        raise "Unexpected error occurred."
+
+
 class Orientation:
     class AxisAngle(interface.Orientation):
         def __init__(self, x, y, z, a):
