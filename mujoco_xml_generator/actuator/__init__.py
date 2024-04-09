@@ -1,4 +1,3 @@
-from .actuator import Actuator
 from .adhesion import Adhesion
 from .cylinder import Cylinder
 from .damper import Damper
