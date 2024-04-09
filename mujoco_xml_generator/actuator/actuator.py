@@ -1,10 +1,12 @@
 from mujoco_xml_generator import _utils as utils
 
-from mujoco_xml_generator.actuator import General
+from mujoco_xml_generator.actuator import Adhesion, Cylinder, Damper, General, IntVelocity, Motor, Muscle, Position, Velocity
 
 
 class Actuator(utils.MuJoCoElement):
-    SUPPORTED_CHILDREN_TYPES = [General]
+    SUPPORTED_CHILDREN_TYPES = [
+        Adhesion, Cylinder, Damper, General, IntVelocity, Motor, Muscle, Position, Velocity
+    ]
 
     def __init__(self):
         self.children = []
