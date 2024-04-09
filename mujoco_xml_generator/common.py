@@ -4,6 +4,69 @@ import math
 from mujoco_xml_generator import interface
 
 
+class BiasType(enum.Enum):
+    NONE = 0
+    AFFINE = 1
+    MUSCLE = 2
+    USER = 3
+
+    def __str__(self) -> str:
+        match self:
+            case BiasType.NONE:
+                return "none"
+            case BiasType.AFFINE:
+                return "affine"
+            case BiasType.MUSCLE:
+                return "muscle"
+            case BiasType.USER:
+                return "user"
+        raise "Unexpected error occurred."
+
+
+class GainType(enum.Enum):
+    FIXED = 0
+    AFFINE = 1
+    MUSCLE = 2
+    USER = 3
+
+    def __str__(self) -> str:
+        match self:
+            case GainType.FIXED:
+                return "fixed"
+            case GainType.AFFINE:
+                return "affine"
+            case GainType.MUSCLE:
+                return "muscle"
+            case GainType.USER:
+                return "user"
+        raise "Unexpected error occurred."
+
+
+class DynType(enum.Enum):
+    NONE = 0
+    INTEGRATOR = 1
+    FILTER = 2
+    FILTEREXACT = 3
+    MUSCLE = 4
+    USER = 5
+
+    def __str__(self) -> str:
+        match self:
+            case DynType.NONE:
+                return "none"
+            case DynType.INTEGRATOR:
+                return "integrator"
+            case DynType.FILTER:
+                return "filter"
+            case DynType.FILTEREXACT:
+                return "filterexact"
+            case DynType.MUSCLE:
+                return "muscle"
+            case DynType.USER:
+                return "user"
+        raise "Unexpected error occurred."
+
+
 class GeomType(enum.Enum):
     PLANE = 0
     H_FIELD = 1
