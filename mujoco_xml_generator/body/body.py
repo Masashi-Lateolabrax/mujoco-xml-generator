@@ -4,10 +4,11 @@ from .geom import Geom
 from .joint import Joint
 from .camera import Camera
 from .light import Light
+from .site import Site
 
 
 class Body(utils.MuJoCoElement):
-    SUPPORTED_CHILDREN_TYPES = [Geom, Joint, Camera, Light]
+    SUPPORTED_CHILDREN_TYPES = [Geom, Joint, Camera, Light, Site]
 
     def __init__(
             self,
