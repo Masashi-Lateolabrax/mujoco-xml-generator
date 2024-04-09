@@ -9,7 +9,9 @@ from PIL import Image as PILImage, ImageTk as PILImageTk
 class FPSManager:
     def __init__(self, target: float, n: int):
         self._n = n
+        self._prev_time = 0
         self._times: list[float] = []
+        self._intervals: list[float] = [0.0 for _ in range(n)]
         self._intervals_rendered: list[float] = []
         self._intervals_skipped: list[float] = []
 
@@ -21,6 +23,13 @@ class FPSManager:
         self.skip_rate: float = 1.0 / (n + 1)
         self._skip_tank: float = 0
         self._skip_co: list[float] = [1.0 / (n + 1), target, 1, 0.0018]
+
+    def calc_interval(self):
+        t = time.time()
+        self._intervals.append(t - self._prev_time)
+        self._intervals.pop(0)
+        self._prev_time = t
+        return sum(self._intervals) / self._n
 
     def record_start(self):
         self._times.append(
