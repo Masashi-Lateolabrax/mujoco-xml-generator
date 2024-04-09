@@ -12,7 +12,7 @@ def test_to_string_with_none():
     sample = Joint(
         name="joint",
         class_="class",
-        type_=Joint.JointType.HINGE,
+        type_=common.JointType.HINGE,
         pos=(0.0, 0.0, 0.0),
         axis=(1.0, 2.0, 3.0),
         limited=common.BoolOrAuto.TRUE,

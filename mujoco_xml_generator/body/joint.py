@@ -30,7 +30,7 @@ class Joint(utils.MuJoCoElement):
     ):
         self.name = utils.Attribution("name", name, str)
         self.class_ = utils.Attribution("class", class_, str)
-        self.type_ = utils.Attribution("type", type_, str, Joint.JointType.HINGE)
+        self.type_ = utils.Attribution("type", type_, str, common.JointType.HINGE)
         self.group = utils.Attribution("group", group, int, 0)
         self.pos = utils.Attribution("pos", pos, float, (0.0, 0.0, 0.0))
         self.axis = utils.Attribution("axis", axis, float, (0.0, 0.0, 0.0))

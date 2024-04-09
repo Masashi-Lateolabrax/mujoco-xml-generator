@@ -60,7 +60,6 @@ def test_to_string():
         "user=\"0.0\" ",
         "actdim=\"1.0\" ",
         "dyntype=\"muscle\" ",
-        "gaintype=\"fixed\" ",
         "biastype=\"affine\" ",
         "dynprm=\"1.0\" ",
         "gainprm=\"1.0 2.0\" ",
