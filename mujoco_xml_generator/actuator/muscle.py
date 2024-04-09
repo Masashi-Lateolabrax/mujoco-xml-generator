@@ -12,7 +12,7 @@ class Muscle(utils.MuJoCoElement):
             ctrlrange: tuple[float, float] = (0.0, 0.0),
             forcerange: tuple[float, float] = (0.0, 0.0),
             lengthrange: tuple[float, float] = (0.0, 0.0),
-            gear: tuple[float, float, float, float, float, float] = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
+            gear: tuple[float, float, float, float, float, float] = (1.0, 0.0, 0.0, 0.0, 0.0, 0.0),
             cranklength: float = 0.0,
             joint: str | None = None,
             jointinparent: str | None = None,
