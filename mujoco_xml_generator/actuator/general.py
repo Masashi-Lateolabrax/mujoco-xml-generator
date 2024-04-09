@@ -23,6 +23,7 @@ class General(utils.MuJoCoElement):
             body: str | None = None,
             tendon: str | None = None,
             cranksite: str | None = None,
+            slidersite: str | None = None,
             user: list[float] | None = None,
             actdim: float = -1.0,
             dyntype: common.DynType = common.DynType.NONE,
@@ -52,6 +53,7 @@ class General(utils.MuJoCoElement):
         self.body = utils.Attribution("body", body, str)
         self.tendon = utils.Attribution("tendon", tendon, str)
         self.cranksite = utils.Attribution("cranksite", cranksite, str)
+        self.slidersite = utils.Attribution("slidersite", slidersite, str)
         self.user = utils.Attribution("user", user, float)
         self.actdim = utils.Attribution("actdim", actdim, float, -1.0)
         self.dyntype = utils.Attribution("dyntype", dyntype, str, common.DynType.NONE)
