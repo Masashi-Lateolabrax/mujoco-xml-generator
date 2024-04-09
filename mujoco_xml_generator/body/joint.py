@@ -1,31 +1,12 @@
-import enum
-from mujoco_xml_generator import common, interface, _utils as utils
+from mujoco_xml_generator import common, _utils as utils
 
 
 class Joint(utils.MuJoCoElement):
-    class JointType(enum.Enum):
-        FREE = 0
-        BALL = 1
-        SLIDE = 2
-        HINGE = 4
-
-        def __str__(self) -> str:
-            match self:
-                case Joint.JointType.FREE:
-                    return "free"
-                case Joint.JointType.BALL:
-                    return "ball"
-                case Joint.JointType.SLIDE:
-                    return "slide"
-                case Joint.JointType.HINGE:
-                    return "hinge"
-            raise "Unexpected error occurred."
-
     def __init__(
             self,
             name: str | None = None,
             class_: str | None = None,
-            type_: JointType | None = JointType.HINGE,
+            type_: common.JointType | None = common.JointType.HINGE,
             group: int | None = 0,
             pos: tuple[float, float, float] | None = (0.0, 0.0, 0.0),
             axis: tuple[float, float, float] | None = (0.0, 0.0, 0.0),

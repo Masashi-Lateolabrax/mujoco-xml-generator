@@ -4,6 +4,25 @@ import math
 from mujoco_xml_generator import interface
 
 
+class JointType(enum.Enum):
+    FREE = 0
+    BALL = 1
+    SLIDE = 2
+    HINGE = 4
+
+    def __str__(self) -> str:
+        match self:
+            case JointType.FREE:
+                return "free"
+            case JointType.BALL:
+                return "ball"
+            case JointType.SLIDE:
+                return "slide"
+            case JointType.HINGE:
+                return "hinge"
+        raise "Unexpected error occurred."
+
+
 class BiasType(enum.Enum):
     NONE = 0
     AFFINE = 1
