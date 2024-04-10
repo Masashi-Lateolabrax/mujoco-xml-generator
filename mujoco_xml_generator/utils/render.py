@@ -126,6 +126,9 @@ class MuJoCoView(tk.Frame):
     def _mouse_wheel_handler(self, event, mode=None):
         sensitivity = 0.3
 
+        if mode is None:
+            mode = "up" if event.delta > 0.0 else "down"
+
         v = self._calc_camera_direction()
         if mode == "up":
             self.camera.lookat += v * sensitivity

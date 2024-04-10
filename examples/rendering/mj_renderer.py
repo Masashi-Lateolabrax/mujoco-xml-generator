@@ -22,14 +22,14 @@ def gen_xml() -> str:
             Body(
                 pos=(0, 0, 10)
             ).add_children([
-                body.Joint(type_=body.Joint.JointType.FREE),
+                body.Joint(type_=mjc_cmn.JointType.FREE),
                 body.Geom(type_=mjc_cmn.GeomType.SPHERE, size=(1,))
             ]),
 
             Body(
                 pos=(1.0, 1.0, 0.6)
             ).add_children([
-                body.Joint(type_=body.Joint.JointType.FREE),
+                body.Joint(type_=mjc_cmn.JointType.FREE),
                 body.Geom(type_=mjc_cmn.GeomType.BOX, size=(0.5, 0.5, 0.5))
             ])
         ])
