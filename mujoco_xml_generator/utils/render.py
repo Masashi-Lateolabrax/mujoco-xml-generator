@@ -173,10 +173,14 @@ class MuJoCoView(tk.Frame):
         renderer.update_scene(d, self.camera)
         renderer.render(out=img_buf)
 
-        if out is not None and out.dtype is np.float32:
-            img_buf *= 255.0
-            np.copyto(self.img_buf, img_buf, np.uint8)
+        if out is not None and out.dtype == np.float32:
+            img_buf += 1
+            np.reciprocal(img_buf, out=img_buf)
+            img_buf *= 255
+            np.copyto(self.img_buf[:, :, 0], img_buf, casting="unsafe")
+            np.copyto(self.img_buf[:, :, 1], img_buf, casting="unsafe")
+            np.copyto(self.img_buf[:, :, 2], img_buf, casting="unsafe")
 
         self.tkimg_buf.paste(
-            PILImage.fromarray(img_buf)
+            PILImage.fromarray(self.img_buf)
         )
