@@ -165,9 +165,12 @@ class MuJoCoView(tk.Frame):
     def _mouse_left_handler(self, event, mode):
         self._mouse_left = mode == "down"
 
-    def render(self, d: mujoco.MjData, renderer: mujoco.renderer.Renderer):
+    def render(self, d: mujoco.MjData, renderer: mujoco.renderer.Renderer, out: np.ndarray | None = None):
+        img_buf = self.img_buf
+        if out is not None:
+            img_buf = out
         renderer.update_scene(d, self.camera)
-        renderer.render(out=self.img_buf)
+        renderer.render(out=img_buf)
         self.tkimg_buf.paste(
             PILImage.fromarray(self.img_buf)
         )
