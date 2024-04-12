@@ -169,8 +169,14 @@ class MuJoCoView(tk.Frame):
         img_buf = self.img_buf
         if out is not None:
             img_buf = out
+
         renderer.update_scene(d, self.camera)
         renderer.render(out=img_buf)
+
+        # if out is not None and out.dtype is np.float32:
+        #     img_buf *= 255.0
+        #     np.copyto(self.img_buf, img_buf)
+
         self.tkimg_buf.paste(
-            PILImage.fromarray(self.img_buf)
+            PILImage.fromarray(img_buf)
         )
