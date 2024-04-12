@@ -175,7 +175,7 @@ class MuJoCoView(tk.Frame):
 
         if out is not None and out.dtype is np.float32:
             img_buf *= 255.0
-            np.copyto(self.img_buf, img_buf)
+            np.copyto(self.img_buf, img_buf, np.uint8)
 
         self.tkimg_buf.paste(
             PILImage.fromarray(img_buf)
