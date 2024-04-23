@@ -4,6 +4,60 @@ import math
 from mujoco_xml_generator import interface
 
 
+class TextureType(enum.Enum):
+    TWO_DiM = 0
+    CUBE = 1
+    SKYBOX = 2
+
+    def __str__(self) -> str:
+        match self:
+            case TextureType.TWO_DiM:
+                return "2d"
+            case TextureType.CUBE:
+                return "cube"
+            case TextureType.SKYBOX:
+                return "skybox"
+        raise "Unexpected error occurred."
+
+
+class TextureBuiltinType(enum.Enum):
+    NONE = 0
+    GRADIENT = 1
+    CHECKER = 2
+    FLAT = 2
+
+    def __str__(self) -> str:
+        match self:
+            case TextureBuiltinType.NONE:
+                return "none"
+            case TextureBuiltinType.GRADIENT:
+                return "gradient"
+            case TextureBuiltinType.CHECKER:
+                return "checker"
+            case TextureBuiltinType.FLAT:
+                return "flat"
+        raise "Unexpected error occurred."
+
+
+class TextureMark(enum.Enum):
+    NONE = 0
+    EDGE = 1
+    CROSS = 2
+    RANDOM = 2
+
+    def __str__(self) -> str:
+        match self:
+            case TextureMark.NONE:
+                return "none"
+            case TextureMark.EDGE:
+                return "edge"
+            case TextureMark.CROSS:
+                return "cross"
+            case TextureMark.RANDOM:
+                return "random"
+        raise "Unexpected error occurred."
+
+
 class JointType(enum.Enum):
     FREE = 0
     BALL = 1
