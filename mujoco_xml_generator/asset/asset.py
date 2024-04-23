@@ -1,10 +1,11 @@
 from mujoco_xml_generator import _utils as utils
 
 from .texture import Texture
+from .material import Material
 
 
 class Asset(utils.MuJoCoElement):
-    SUPPORTED_CHILDREN_TYPES = [Texture]
+    SUPPORTED_CHILDREN_TYPES = [Texture, Material]
 
     def __init__(self):
         self.children = []
