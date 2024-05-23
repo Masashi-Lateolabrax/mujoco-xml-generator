@@ -25,8 +25,9 @@ class Site(utils.MuJoCoElement):
         self.rgba = utils.Attribution("rgba", rgba, float, (0.5, 0.5, 0.5, 1))
         self.fromto = utils.Attribution("fromto", fromto, float)
         self.pos = utils.Attribution("pos", pos, float, (0.0, 0.0, 0.0))
-        self.orientation = utils.Attribution(orientation.get_type(), orientation, str,
-                                             common.Orientation.Quaternion(1, 0, 0, 0))
+        self.orientation = utils.Attribution(
+            orientation.get_type(), orientation, str, common.Orientation.Quaternion(1, 0, 0, 0)
+        )
         self.user = utils.Attribution("user", user, float)
 
     def get_element_name(self):
