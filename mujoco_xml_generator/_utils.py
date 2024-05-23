@@ -1,4 +1,8 @@
 import abc
+
+import numpy as np
+
+from collections.abc import Iterable
 from mujoco_xml_generator import interface
 
 
@@ -36,21 +40,28 @@ class Attribution:
 
         if value is None:
             self.value = None
-        elif value == default:
-            self.value = None
-        elif type(value) is bool:
-            self.value = str(value).lower()
-        elif type(value) is tuple or type(value) is list:
-            vs = []
-            for v in value:
-                if not (type(v) is int or type(v) is float):
-                    raise "Specified type is unsupported."
-                vs.append(str(force_type(v)))
-            self.value = " ".join(vs)
+        elif isinstance(value, Iterable) and type(value) is not str:
+            if default is not None and all([type(v) is type(d) and v == d for v, d in zip(value, default)]):
+                self.value = None
+            elif all([type(v) is bool for v in value]):
+                self.value = " ".join(map(lambda x: str(x).lower(), value))
+            elif force_type is bool:
+                self.value = " ".join(map(lambda x: str(force_type(x)).lower(), value))
+            elif isinstance(value, np.ndarray):
+                value = value.flatten()
+                self.value = " ".join(map(lambda x: str(force_type(x)), value))
+                pass
+            else:
+                self.value = " ".join(map(lambda x: str(force_type(x)), value))
         else:
-            self.value = force_type(value)
-            if type(self.value) is bool:
-                self.value = str(self.value).lower()
+            if default is not None and type(value) is type(default) and value == default:
+                self.value = None
+            elif type(value) is bool:
+                self.value = str(value).lower()
+            elif force_type is bool:
+                self.value = str(force_type(value)).lower()
+            else:
+                self.value = force_type(value)
 
     def is_none(self) -> bool:
         return self.value is None
