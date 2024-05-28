@@ -61,8 +61,6 @@ def test_to_string():
         "actdim=\"1.0\" ",
         "dyntype=\"muscle\" ",
         "biastype=\"affine\" ",
-        "dynprm=\"1.0\" ",
-        "gainprm=\"1.0 2.0\" ",
         "biasprm=\"3.0\" ",
         "actearly=\"true\"/>\n",
         "</actuator>"
@@ -108,6 +106,7 @@ def test_to_string_with_default():
         "ctrlrange=\"1.0 2.0\" ",
         "actrange=\"0.1 0.2\" ",
         "lengthrange=\"2.0 1.0\" ",
+        "gear=\"1.0 0.0 0.0 0.0 0.0 0.0\" ",
         "cranklength=\"1.0\" ",
         "joint=\"joint\" ",
         "jointinparent=\"parent\" ",
@@ -118,7 +117,6 @@ def test_to_string_with_default():
         "user=\"0.0\" ",
         "actdim=\"1.0\" ",
         "dyntype=\"muscle\" ",
-        "gainprm=\"1.0 2.0\" ",
         "biasprm=\"3.0\" ",
         "actearly=\"true\"/>\n",
         "</actuator>"
