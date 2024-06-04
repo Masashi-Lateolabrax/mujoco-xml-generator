@@ -5,6 +5,8 @@ import mujoco
 import numpy as np
 from PIL import Image as PILImage, ImageTk as PILImageTk
 
+from .dummy_geom import DummyGeom, draw_dummy_geoms
+
 
 class FPSManager:
     def __init__(self, n: int):
@@ -164,12 +166,17 @@ class MuJoCoView(tk.Frame):
     def _mouse_left_handler(self, event, mode):
         self._mouse_left = mode == "down"
 
-    def render(self, d: mujoco.MjData, renderer: mujoco.renderer.Renderer, out: np.ndarray | None = None):
+    def render(
+            self, d: mujoco.MjData, renderer: mujoco.renderer.Renderer, out: np.ndarray | None = None,
+            dummy_geoms: list[DummyGeom] | None = None
+    ):
         img_buf = self.img_buf
         if out is not None:
             img_buf = out
 
         renderer.update_scene(d, self.camera)
+        if dummy_geoms is not None:
+            draw_dummy_geoms(dummy_geoms, renderer)
         renderer.render(out=img_buf)
 
         if out is not None and out.dtype == np.float32:
