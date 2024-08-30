@@ -7,5 +7,6 @@ from .compiler.compiler import Compiler
 from .default.default import Default
 from .option.option import Option
 from .visual.visual import Visual
+from .sensor.sensor import Sensor
 
 from .generator import Generator
