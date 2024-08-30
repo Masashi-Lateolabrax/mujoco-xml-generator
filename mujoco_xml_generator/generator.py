@@ -6,10 +6,11 @@ from mujoco_xml_generator import WorldBody, Body
 from mujoco_xml_generator import Visual
 from mujoco_xml_generator import Default
 from mujoco_xml_generator import Option
+from mujoco_xml_generator import Sensor
 
 
 class Generator:
-    SUPPORTED_CHILDREN_TYPES = [Actuator, Asset, WorldBody, Body, Visual, Default, Option]
+    SUPPORTED_CHILDREN_TYPES = [Actuator, Asset, WorldBody, Body, Visual, Default, Option, Sensor]
 
     def __init__(self, model: str = "MuJoCo Model"):
         self.model = utils.Attribution("model", model, str, "MuJoCo Model")
