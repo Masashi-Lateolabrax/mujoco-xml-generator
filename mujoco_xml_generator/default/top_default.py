@@ -19,7 +19,7 @@ class TopDefault(utils.MuJoCoElement):
 
     def add_children(self, children: list):
         for c in children:
-            if type(c) not in Default.SUPPORTED_CHILDREN_TYPES:
+            if type(c) not in TopDefault.SUPPORTED_CHILDREN_TYPES:
                 raise "Unsupported type is added."
             self.children.append(c)
         return self
