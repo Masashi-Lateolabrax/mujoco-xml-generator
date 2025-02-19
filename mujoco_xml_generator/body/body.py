@@ -60,7 +60,7 @@ class Body(utils.MuJoCoElement):
 
 
 class WorldBody(utils.MuJoCoElement):
-    SUPPORTED_CHILDREN_TYPES = [Body, Geom, Light]
+    SUPPORTED_CHILDREN_TYPES = [Body, Geom, Light, Site]
 
     def __init__(self):
         self.children = []
