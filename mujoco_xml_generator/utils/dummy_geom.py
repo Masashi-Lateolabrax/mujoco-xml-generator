@@ -54,10 +54,12 @@ class DummyGeom(mujoco.MjvGeom):
         mujoco.mju_quat2Mat(mat, quat)
         self.mat = mat.reshape(3, 3)
 
-    def get_rgba(self) -> numpy.ndarray:
+    @property
+    def color(self) -> numpy.ndarray:
         return self.rgba.copy()
 
-    def set_rgba(self, rgba):
+    @color.setter
+    def color(self, rgba):
         self.rgba = numpy.array(rgba).reshape((4,))
 
 
