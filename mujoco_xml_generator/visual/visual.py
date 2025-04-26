@@ -1,10 +1,11 @@
 from mujoco_xml_generator import _utils as utils
 
 from .global_ import Global
+from .headlight import HeadLight
 
 
 class Visual(utils.MuJoCoElement):
-    SUPPORTED_CHILDREN_TYPES = [Global]
+    SUPPORTED_CHILDREN_TYPES = [Global, HeadLight]
 
     def __init__(self):
         self.children = []
